@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -34,7 +34,7 @@
 
   /* Layout */
   .section-container {
-    @apply max-w-7xl mx-auto px-6 lg:px-12;
+    @apply max-w-7xl mx-auto px-3 lg:px-6;
   }
   .section-py {
     @apply py-0;
@@ -54,11 +54,11 @@
   /* Add vertical grid line on right column */
   .editorial-grid > :nth-child(2) {
     border-left: 1px solid rgb(0 0 0 / 0.1);
-    padding-left: 1.5rem;
+    padding-left: 0.75rem;
   }
   @media (min-width: 768px) {
     .editorial-grid > :nth-child(2) {
-      padding-left: 2rem;
+      padding-left: 1rem;
     }
   }
 

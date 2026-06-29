@@ -32,9 +32,9 @@ export default {
         ink: '#111111',
       },
       fontFamily: {
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        sans:    ['Inter', 'system-ui', 'sans-serif'],
-        serif:   ['Space Grotesk', 'system-ui', 'sans-serif'],
+        display: ['Geist', 'system-ui', 'sans-serif'],
+        sans:    ['Geist', 'system-ui', 'sans-serif'],
+        serif:   ['Geist', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '5xl': ['3rem',    { lineHeight: '1.05' }],
