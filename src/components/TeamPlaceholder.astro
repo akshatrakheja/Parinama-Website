@@ -1,0 +1,30 @@
+---
+interface TeamMember {
+  name: string;
+  role: string;
+}
+
+interface Props {
+  members: TeamMember[];
+}
+
+const { members } = Astro.props;
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+  {members.map(member => (
+    <div class="text-center">
+      <!-- Labeled placeholder headshot -->
+      <div class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 rounded-full bg-forest/10 border-2 border-dashed border-forest/30 flex flex-col items-center justify-center">
+        <svg class="w-8 h-8 text-forest/30 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <span class="text-[10px] text-forest/40 font-medium">Photo</span>
+      </div>
+      <h3 class="font-serif font-semibold text-charcoal text-sm md:text-base leading-tight">
+        {member.name}
+      </h3>
+      <p class="text-xs text-charcoal/50 mt-1">{member.role}</p>
+    </div>
+  ))}
+</div>
