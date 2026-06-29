@@ -66,50 +66,49 @@ const teamMembers = [
 <BaseLayout>
 
   <!-- ═══════════════════════════════════════════════════════
-       HERO
+       SECTION 0 — INTRO
   ═══════════════════════════════════════════════════════ -->
-  <section class="bg-forest text-white pt-24 pb-0">
-    <div class="section-container">
+  <section class="bg-cream section-container py-0">
+    <!-- Top rule -->
+    <hr class="border-t border-black w-full" />
 
-      <!-- Top rule -->
-      <hr class="border-t border-white/20 w-full" />
-
-      <!-- Badge + tagline row -->
-      <div class="editorial-grid items-start py-6 md:py-10">
-        <div class="pt-2">
-          <span class="inline-block bg-white text-forest font-display font-bold text-xs px-2 py-1 leading-none">
-            EST
-          </span>
-        </div>
-        <div>
-          <p class="text-white/50 text-xs font-sans uppercase tracking-widest mb-4">
+    <!-- Section header -->
+    <div class="editorial-grid items-start py-6 md:py-8">
+      <div class="pt-1">
+        <span class="font-display text-sm text-black">Intro:</span>
+      </div>
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-black/40 text-xs font-sans uppercase tracking-widest mb-4">
             SEBI Cat-II AIF · First close Q4 2026
           </p>
-          <h1 class="font-display font-bold leading-none tracking-tight text-4xl md:text-6xl lg:text-8xl mb-6">
+          <h1 class="font-display font-bold leading-none tracking-tight text-4xl md:text-6xl lg:text-7xl mb-6 text-black">
             India's climate<br/>
             <span class="text-gold-DEFAULT">transformation</span><br/>
             is the investment.
           </h1>
-          <p class="text-white/70 text-base md:text-lg max-w-xl mb-2 font-sans">
+          <p class="text-black text-base md:text-lg max-w-2xl mb-2 font-sans leading-relaxed">
             India's first full-stack climate platform —
             <span class="text-sage-DEFAULT font-semibold">AIF · Advisory · Ecosystem.</span>
           </p>
-          <p class="text-white/50 text-sm max-w-md mb-10 font-sans">
+          <p class="text-black/60 text-sm max-w-xl mb-8 font-sans leading-relaxed">
             India's climate transformation is underway. This is the entry point.
           </p>
           <div class="flex flex-col sm:flex-row gap-3">
-            <a href="/contact" class="btn-ghost">
+            <a href="/contact" class="btn-primary">
               Investor Enquiry →
             </a>
-            <a href="/platform" class="inline-flex items-center justify-center px-6 py-3 text-white/60 font-display font-semibold text-sm tracking-wide hover:text-white transition-colors">
-              Explore the Platform ↓
+            <a href="/platform" class="btn-secondary">
+              Explore the Platform
             </a>
           </div>
         </div>
+        <span class="w-2 h-2 rounded-full bg-black mt-3 flex-shrink-0"></span>
       </div>
-
-      <hr class="border-t border-white/20 w-full" />
     </div>
+
+    <!-- Bottom rule -->
+    <hr class="border-t border-black w-full" />
   </section>
 
 

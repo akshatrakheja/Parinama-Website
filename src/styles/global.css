@@ -40,7 +40,7 @@
     @apply py-0;
   }
 
-  /* Editorial grid layout */
+  /* Editorial grid layout with vertical line */
   .editorial-grid {
     display: grid;
     grid-template-columns: 5rem 1fr;
@@ -49,6 +49,16 @@
   @media (min-width: 768px) {
     .editorial-grid {
       grid-template-columns: 7rem 1fr;
+    }
+  }
+  /* Add vertical grid line on right column */
+  .editorial-grid > :nth-child(2) {
+    border-left: 1px solid rgb(0 0 0 / 0.1);
+    padding-left: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .editorial-grid > :nth-child(2) {
+      padding-left: 2rem;
     }
   }
 

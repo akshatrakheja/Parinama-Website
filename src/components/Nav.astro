@@ -6,65 +6,42 @@ const navLinks = [
   { label: 'Team',       href: '/team' },
   { label: 'Contact',    href: '/contact' },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
 <header class="fixed top-0 inset-x-0 z-50 bg-cream border-b border-black">
   <div class="section-container">
     <nav class="flex items-center justify-between h-14">
 
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 group" aria-label="Parinama Home">
-        <div class="w-6 h-6 bg-forest flex items-center justify-center flex-shrink-0">
-          <span class="text-white text-xs font-display font-bold">P</span>
-        </div>
-        <span class="font-display font-bold text-base text-black tracking-tight">Parinama</span>
+      <!-- Logo - plain text only -->
+      <a href="/" class="font-display font-bold text-base text-black tracking-tight hover:text-forest transition-colors" aria-label="Parinama Home">
+        Parinama
       </a>
 
-      <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-0" role="list">
-        {navLinks.map(link => (
-          <li>
-            <a
-              href={link.href}
-              class={`px-4 py-1.5 text-sm font-display font-medium transition-colors border-l border-transparent ${
-                currentPath === link.href
-                  ? 'text-forest border-l border-black'
-                  : 'text-black/60 hover:text-black'
-              }`}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <!-- CTA -->
-      <div class="hidden md:flex items-center">
-        <a href="/contact" class="btn-primary text-xs px-5 py-2.5">
-          Investor Enquiry
+      <!-- Right side: Contact Us + Hamburger -->
+      <div class="flex items-center gap-6">
+        <a href="/contact" class="text-sm font-display font-medium text-black hover:text-forest transition-colors">
+          Contact Us
         </a>
+        
+        <!-- Hamburger button (visible on all screen sizes) -->
+        <button
+          id="mobile-menu-btn"
+          class="p-2 text-black hover:text-forest transition-colors"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path id="menu-open" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            <path id="menu-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
-
-      <!-- Mobile menu button -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden p-2 text-black hover:text-forest transition-colors"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-      >
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path id="menu-open" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-          <path id="menu-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
     </nav>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-black bg-cream">
-    <div class="section-container py-4 flex flex-col gap-0">
+  <!-- Drawer menu (for all screen sizes) -->
+  <div id="mobile-menu" class="hidden border-t border-black bg-cream">
+    <div class="section-container py-6 flex flex-col gap-0">
       {navLinks.map(link => (
         <a
           href={link.href}
@@ -73,11 +50,6 @@ const currentPath = Astro.url.pathname;
           {link.label}
         </a>
       ))}
-      <div class="pt-4">
-        <a href="/contact" class="btn-primary w-full text-center text-sm">
-          Investor Enquiry
-        </a>
-      </div>
     </div>
   </div>
 </header>
