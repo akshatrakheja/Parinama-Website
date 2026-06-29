@@ -25,12 +25,30 @@ const platformRows = [
 ];
 
 const moats = [
-  { name: 'Full-Stack Platform',    desc: 'End-to-end: capital → advisory → ecosystem.' },
-  { name: 'Institutional Pedigree', desc: 'Operators and allocators, not just advisors.' },
-  { name: 'Sovereign Signal',       desc: 'Aligned with national climate transition agenda.' },
-  { name: 'Builder-LP Duality',     desc: 'We build companies and invest in them.' },
-  { name: 'Blended Capital',        desc: 'Public + private + philanthropic stacks.' },
-  { name: 'Impact-NAV',             desc: 'Proprietary impact-adjusted valuation model.' },
+  {
+    name: 'Full-Stack Platform',
+    desc: 'Most climate funds deploy capital. Parinama architects the entire system — from seed investment to corporate advisory to ecosystem governance. By owning all three levers simultaneously, we eliminate handoffs, compress the time from insight to impact, and capture value at every layer of the transition.',
+  },
+  {
+    name: 'Institutional Pedigree',
+    desc: 'Our partners have built and exited climate businesses, structured DFI mandates, and sat on both sides of the LP–GP table. This is operating experience — not academic thesis. We know what it takes to build in India\'s regulatory and capital environment, and we have the networks to open doors that capital alone cannot.',
+  },
+  {
+    name: 'Sovereign Signal',
+    desc: 'India\'s climate transition is a $2.8 trillion national priority. Parinama is built in alignment with this agenda — working alongside GoI institutions, accessing policy infrastructure, and positioning portfolio companies where sovereign tailwinds accelerate both adoption and returns.',
+  },
+  {
+    name: 'Builder-LP Duality',
+    desc: 'Parinama is simultaneously a fund manager and a company builder. Our portfolio companies are not just financial bets — they are entities we incubate, staff, and scale. The fund participates in value it directly helps create, aligning incentives in a way a passive allocator never can.',
+  },
+  {
+    name: 'Blended Capital',
+    desc: 'Not all climate infrastructure can be funded by equity alone. Our platform stacks philanthropic grants, DFI concessional debt, government incentives, and private equity into single investment vehicles — making deal sizes and return profiles viable across asset classes and risk appetites.',
+  },
+  {
+    name: 'Impact-NAV',
+    desc: 'We developed Impact-NAV, a proprietary valuation framework that adjusts portfolio value for climate additionality, carbon intensity reduction, and transition risk. LPs receive a dual-lens view — rigorous financial returns alongside a principled accounting of real-world climate impact.',
+  },
 ];
 
 const fundRows = [
@@ -66,49 +84,56 @@ const teamMembers = [
 <BaseLayout>
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 0 — INTRO
+       HERO — full viewport, 1fr / 3fr axis
   ═══════════════════════════════════════════════════════ -->
-  <section class="bg-cream section-container py-0">
-    <!-- Top rule -->
-    <hr class="border-t border-black w-full" />
+  <section class="relative h-screen min-h-[640px] overflow-hidden bg-cream">
 
-    <!-- Section header -->
-    <div class="editorial-grid items-start py-3 md:py-4">
-      <div class="pt-1">
-        <span class="font-display text-sm text-black">Intro:</span>
+    <!-- IMAGE SLOT — replace with <img> when ready -->
+    <div class="absolute inset-0 bg-cream" aria-hidden="true"></div>
+    <!-- <img src="/earth.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" /> -->
+
+    <div class="absolute inset-0 flex flex-col justify-between">
+
+      <!-- TOP: left col empty, title sits in right 3fr col -->
+      <div class="section-container pt-10 md:pt-0">
+        <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;">
+          <div></div>
+          <div>
+            <h1 class="font-display font-normal text-black leading-none"
+                style="font-size: clamp(4rem, 10vw, 12rem); letter-spacing: -0.05em;">
+              Capital with<br/>a Conscience.
+            </h1>
+     
+     
+            <div class="border-t border-black/15 mt-6 pt-4 flex items-center justify-between">
+              <span class="text-xs font-sans text-black/30 tracking-wide">Parinama © 2026</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-black/20"></span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex items-start justify-between gap-4">
-        <div class="flex-1">
-          <p class="text-black/40 text-xs font-sans uppercase tracking-widest mb-4">
-            SEBI Cat-II AIF · First close Q4 2026
-          </p>
-          <h1 class="font-display font-bold leading-none tracking-tight text-4xl md:text-6xl lg:text-7xl mb-3 text-black">
-            India's climate<br/>
-            <span class="text-gold-DEFAULT">transformation</span><br/>
-            is the investment.
-          </h1>
-          <p class="text-black text-base md:text-lg max-w-2xl mb-2 font-sans leading-relaxed">
-            India's first full-stack climate platform —
-            <span class="text-sage-DEFAULT font-semibold">AIF · Advisory · Ecosystem.</span>
-          </p>
-          <p class="text-black/60 text-sm max-w-xl mb-4 font-sans leading-relaxed">
-            India's climate transformation is underway. This is the entry point.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a href="/contact" class="btn-primary">
-              Investor Enquiry →
-            </a>
-            <a href="/platform" class="btn-secondary">
-              Explore the Platform
+
+      <!-- BOTTOM: label in left 1fr, tagline + CTA in right 3fr -->
+      <div class="section-container pb-14 md:pb-20">
+        <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;align-items:end;">
+          <div>
+            <p class="text-xs font-sans text-black/40 uppercase tracking-widest">Who we are:</p>
+          </div>
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+               style="border-left:1px solid rgb(0 0 0/0.08);padding-left:2rem;">
+            <p class="font-sans text-black font-normal leading-snug max-w-xl"
+               style="font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.05em;">
+              Architecting and financing India's climate transition.
+              Deploying principled, patient capital into technologies that reshape energy production and consumption.
+            </p>
+            <a href="/contact" class="btn-primary flex-shrink-0 text-base font-semibold">
+              Invest with us →
             </a>
           </div>
         </div>
-        <span class="w-2 h-2 rounded-full bg-black mt-3 flex-shrink-0"></span>
       </div>
-    </div>
 
-    <!-- Bottom rule -->
-    <hr class="border-t border-black w-full" />
+    </div>
   </section>
 
 
@@ -132,7 +157,7 @@ const teamMembers = [
     <!-- Content rows -->
     <div>
       {platformRows.map((row, i) => (
-        <div class={`editorial-grid py-3 md:py-4 ${i < platformRows.length - 1 ? 'border-b border-black/10' : ''}`}>
+        <div class={`editorial-grid py-8 md:py-12 ${i < platformRows.length - 1 ? 'border-b border-black/10' : ''}`}>
           <div class="pt-0.5">
             <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
           </div>
@@ -159,7 +184,7 @@ const teamMembers = [
     </div>
 
     <!-- Closing tagline + CTA -->
-    <div class="editorial-grid py-4 border-t border-black/10">
+    <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
       <div></div>
       <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
         <p class="font-display font-bold text-forest text-lg md:text-xl max-w-sm leading-snug">
@@ -176,7 +201,7 @@ const teamMembers = [
 
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 2 — SIX MOATS
+       SECTION 2 — SIX MOATS  (interactive accordion)
   ═══════════════════════════════════════════════════════ -->
   <section class="bg-cream section-container py-0">
     <SectionHeader
@@ -184,26 +209,83 @@ const teamMembers = [
       title="Six Moats"
       leftLabel="Moat"
       rightLabel="Why it matters"
+      leftLabelClass="w-[38%]"
     />
 
-    <div>
-      {moats.map((moat, i) => (
-        <div class={`editorial-grid py-2 md:py-3 ${i < moats.length - 1 ? 'border-b border-black/10' : ''}`}>
-          <div class="pt-0.5">
-            <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
-          </div>
-          <div class="flex flex-col md:flex-row gap-3 md:gap-8">
-            <div class="md:w-40 flex-shrink-0">
-              <p class="font-display font-semibold text-forest text-sm">{moat.name}</p>
-            </div>
-            <p class="font-sans text-black text-sm leading-relaxed flex-1">{moat.desc}</p>
-          </div>
+    <!-- editorial-grid: left 1fr label | right 3fr interactive panel -->
+    <div class="editorial-grid py-0">
+      <div class="pt-8 pb-16">
+        <span class="text-xs font-sans text-black/40 uppercase tracking-widest">Moats:</span>
+      </div>
+
+      <!-- Right 3fr: two-column interactive panel -->
+      <div class="flex min-h-[28rem] py-0">
+
+        <!-- Clickable list — ~38% of the right column, border-r acts as divider -->
+        <div class="w-[38%] border-r border-black/10 flex-shrink-0">
+          {moats.map((moat, i) => (
+            <button
+              class="moat-tab group w-full text-left border-b border-black/10 py-5 pr-8 flex items-start gap-3 transition-colors duration-150"
+              data-idx={String(i)}
+              data-desc={moat.desc}
+            >
+              <span class="text-[10px] font-mono text-black/25 tabular-nums mt-1 flex-shrink-0 leading-none">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span
+                class="moat-tab-label font-display font-semibold leading-tight text-black/40 group-hover:text-black transition-colors duration-150"
+                style="font-size: clamp(1rem, 1.5vw, 1.35rem);"
+              >
+                {moat.name}
+              </span>
+            </button>
+          ))}
         </div>
-      ))}
+
+        <!-- Description panel — fills remaining ~62% -->
+        <div class="flex-1 pl-10 md:pl-14 pt-5 pb-10">
+          <p
+            id="moat-panel"
+            class="font-sans text-black leading-relaxed transition-opacity duration-200"
+            style="font-size: clamp(1rem, 1.4vw, 1.3rem); max-width: 52ch;"
+          >
+            {moats[0].desc}
+          </p>
+        </div>
+      </div>
     </div>
 
     <hr class="border-t border-black" />
   </section>
+
+  <script>
+    const tabs  = document.querySelectorAll<HTMLButtonElement>('.moat-tab');
+    const panel = document.getElementById('moat-panel') as HTMLElement;
+
+    function activate(idx: number) {
+      tabs.forEach((tab, i) => {
+        const label = tab.querySelector('.moat-tab-label') as HTMLElement | null;
+        if (!label) return;
+        if (i === idx) {
+          label.style.color = 'rgb(0 0 0)';
+          label.style.opacity = '1';
+        } else {
+          label.style.color = '';
+          label.style.opacity = '0.35';
+        }
+      });
+
+      const desc = tabs[idx]?.dataset.desc ?? '';
+      panel.style.opacity = '0';
+      setTimeout(() => {
+        panel.textContent = desc;
+        panel.style.opacity = '1';
+      }, 140);
+    }
+
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
+    activate(0);
+  </script>
 
 
   <!-- ═══════════════════════════════════════════════════════
@@ -219,7 +301,7 @@ const teamMembers = [
 
     <div>
       {fundRows.map((row, i) => (
-        <div class={`editorial-grid py-2 md:py-3 ${i < fundRows.length - 1 ? 'border-b border-black/10' : ''}`}>
+        <div class={`editorial-grid py-8 md:py-10 ${i < fundRows.length - 1 ? 'border-b border-black/10' : ''}`}>
           <div class="pt-0.5">
             <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
           </div>
@@ -236,7 +318,7 @@ const teamMembers = [
     </div>
 
     <!-- Disclaimer + CTA -->
-    <div class="editorial-grid py-4 border-t border-black/10">
+    <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
       <div></div>
       <div class="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
         <p class="text-xs text-black/40 font-sans max-w-sm leading-relaxed">
@@ -265,7 +347,7 @@ const teamMembers = [
 
     <div>
       {ecosystemRows.map((row, i) => (
-        <div class={`editorial-grid py-3 md:py-4 ${i < ecosystemRows.length - 1 ? 'border-b border-black/10' : ''}`}>
+        <div class={`editorial-grid py-10 md:py-14 ${i < ecosystemRows.length - 1 ? 'border-b border-black/10' : ''}`}>
           <div class="pt-0.5">
             <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
           </div>
@@ -291,7 +373,7 @@ const teamMembers = [
     </div>
 
     <!-- 4P architecture -->
-    <div class="editorial-grid py-6 border-t border-black/10">
+    <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
       <div></div>
       <div class="flex flex-col gap-3">
         <p class="text-xs font-sans text-black/50 uppercase tracking-widest">Backed by the 4P Architecture</p>
@@ -314,47 +396,46 @@ const teamMembers = [
 
 
   <!-- ═══════════════════════════════════════════════════════
-       SECTION 5 — TEAM
+       SECTION 5 — TEAM  (4-column photo grid)
   ═══════════════════════════════════════════════════════ -->
   <section class="bg-cream section-container py-0">
     <SectionHeader
       number={5}
       title="The Team"
-      leftLabel="Name"
-      rightLabel="Role"
+      leftLabel=""
+      rightLabel=""
     />
 
-    <div>
-      {teamMembers.map((member, i) => (
-        <div class={`editorial-grid py-2 md:py-3 ${i < teamMembers.length - 1 ? 'border-b border-black/10' : ''}`}>
-          <div class="pt-0.5">
-            <!-- Placeholder avatar -->
-            <div class="w-8 h-8 border border-dashed border-black/20 flex items-center justify-center">
-              <svg class="w-4 h-4 text-black/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    <!-- Full-width 4-column photo strip — no grid offset, edge to edge -->
+    <div class="overflow-x-auto">
+      <div class="flex md:grid md:grid-cols-4 min-w-max md:min-w-0">
+        {teamMembers.map((member) => (
+          <div class="w-64 md:w-auto flex-shrink-0 border-l border-black/10 first:border-l-0 flex flex-col">
+            <!-- Photo placeholder — replace inner div with <img> when ready -->
+            <div class="bg-black/5 w-full flex items-center justify-center"
+                 style="aspect-ratio: 3/4;">
+              <svg class="w-10 h-10 text-black/15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
               </svg>
             </div>
-          </div>
-          <div class="flex flex-col md:flex-row gap-2 md:gap-8">
-            <div class="md:w-40 flex-shrink-0">
-              <p class="font-display font-semibold text-forest text-sm">{member.name}</p>
+            <!-- Name + role -->
+            <div class="px-4 pt-4 pb-8">
+              <p class="font-display font-semibold text-black text-sm leading-snug mb-0.5">
+                {member.name}
+              </p>
+              <p class="font-sans text-black/40 text-xs tracking-wide">{member.role}</p>
             </div>
-            <p class="font-sans text-black/60 text-sm">{member.role}</p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
 
-    <div class="editorial-grid py-6 border-t border-black/10">
-      <div></div>
-      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
-        <p class="font-sans text-black/50 text-sm italic">
-          Operators, capital allocators, and policy architects.
-        </p>
-        <a href="/team" class="btn-secondary self-start">
-          Full team →
-        </a>
-      </div>
+    <div class="py-6 border-t border-black/10 flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
+      <p class="font-sans text-black/40 text-xs uppercase tracking-widest">
+        Operators · Capital allocators · Policy architects
+      </p>
+      <a href="/team" class="btn-secondary self-start">Full team →</a>
     </div>
 
     <hr class="border-t border-black" />
@@ -369,7 +450,7 @@ const teamMembers = [
 
       <hr class="border-t border-white/20" />
 
-      <div class="editorial-grid items-start py-10 md:py-16">
+      <div class="editorial-grid items-start py-16 md:py-28">
         <div class="pt-1">
           <span class="inline-block bg-white text-forest font-display font-bold text-xs px-2 py-1 leading-none">6:</span>
         </div>

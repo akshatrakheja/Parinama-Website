@@ -27,7 +27,7 @@ export default {
           light: '#96d4a4',
           dark:  '#57a869',
         },
-        cream: '#efede3',
+        cream: '#f7f6f2',
         charcoal: '#000000',
         ink: '#111111',
       },

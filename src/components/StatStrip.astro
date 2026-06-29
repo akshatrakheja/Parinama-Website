@@ -24,47 +24,55 @@ const stats = [
 ---
 
 <section class="bg-cream section-container py-0">
-  <!-- Top rule -->
   <hr class="border-t border-black w-full" />
 
-  <!-- Section header: Numbers label on left -->
-  <div class="editorial-grid py-3 md:py-4">
-    <div>
+  <div class="editorial-grid py-0">
+    <!-- Left label -->
+    <div class="pt-10 md:pt-12">
       <span class="font-display text-sm text-black">Numbers:</span>
     </div>
+
+    <!-- Right: stat rows in a 3-column sub-grid so descriptions always align -->
     <div>
-      <!-- Vertical list of stats -->
-      <div class="space-y-0">
-        {stats.map((stat, i) => (
-          <>
-            <div class="flex items-start justify-between gap-4 md:gap-8 py-2 md:py-3">
-              <!-- Large number -->
-              <div class="flex-shrink-0">
-                <div class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-black leading-none">
-                  {stat.value}
-                </div>
-              </div>
-              <!-- Description -->
-              <div class="flex-1 pt-1">
-                <p class="text-black text-sm md:text-base font-sans leading-relaxed">
-                  {stat.label}
-                </p>
-                <p class="text-black/40 text-xs font-sans uppercase tracking-wide mt-1">
-                  {stat.source}
-                </p>
-              </div>
-              <!-- Bullet -->
-              <span class="w-2 h-2 rounded-full bg-black mt-2 flex-shrink-0"></span>
+      {stats.map((stat, i) => (
+        <>
+          <!--
+            3 columns:
+              [number — fixed 240px]  [description — flex]  [dot — 12px]
+            Fixed number width means descriptions always start at the same x
+            regardless of whether the number is "40+" or "$10.1T"
+          -->
+          <div
+            class="py-4 md:py-10"
+            style="display: grid; grid-template-columns: 270px 1fr 12px; align-items: start; gap: 0 2rem;"
+          >
+            <!-- Number -->
+            <div class="font-display font-normal text-black leading-none"
+                 style="font-size: clamp(3rem, 5vw, 7rem); letter-spacing: -0.05em;">
+              {stat.value}
             </div>
-            {i < stats.length - 1 && (
-              <hr class="border-t border-black/10 w-full" />
-            )}
-          </>
-        ))}
-      </div>
+
+            <!-- Description — always starts at the same x -->
+            <div class="pt-1">
+              <p class="font-sans text-black text-sm md:text-base leading-snug">
+                {stat.label}
+              </p>
+              <p class="font-sans text-black/40 text-xs uppercase tracking-widest mt-1.5">
+                {stat.source}
+              </p>
+            </div>
+
+            <!-- Dot -->
+            <div class="w-2 h-2 rounded-full bg-black mt-2 flex-shrink-0"></div>
+          </div>
+
+          {i < stats.length - 1 && (
+            <hr class="border-t border-black/10 w-full" />
+          )}
+        </>
+      ))}
     </div>
   </div>
 
-  <!-- Bottom rule -->
   <hr class="border-t border-black w-full" />
 </section>
