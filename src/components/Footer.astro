@@ -1,0 +1,70 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal text-white">
+  <div class="section-container py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-full bg-forest flex items-center justify-center">
+            <span class="text-white text-xs font-serif font-bold">P</span>
+          </div>
+          <span class="font-serif font-semibold text-lg tracking-tight">Parinama</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed">
+          India's first full-stack climate platform.
+        </p>
+        <p class="text-white/40 text-xs mt-2 tracking-widest uppercase">
+          AIF &middot; Advisory &middot; Ecosystem
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Platform</h3>
+        <ul class="space-y-2">
+          {[
+            { label: 'Platform Overview', href: '/platform' },
+            { label: 'The Fund',          href: '/fund' },
+            { label: 'Ecosystem',         href: '/ecosystem' },
+            { label: 'Team',              href: '/team' },
+          ].map(l => (
+            <li>
+              <a href={l.href} class="text-sm text-white/60 hover:text-white transition-colors">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Contact</h3>
+        <a
+          href="mailto:investors@parinama.com"
+          class="text-sm text-lime-DEFAULT hover:text-lime-light transition-colors"
+        >
+          investors@parinama.com
+        </a>
+        <div class="mt-6">
+          <a href="/contact" class="btn-ghost text-xs px-4 py-2">
+            Investor Enquiry
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal disclaimer -->
+    <div class="border-t border-white/10 pt-8">
+      <p class="text-xs text-white/40 leading-relaxed max-w-3xl mb-4">
+        <strong class="text-white/60">Disclaimer:</strong> For informational purposes only. Does not constitute an offer to buy or sell securities. Subject to SEBI AIF Regulations 2012.
+      </p>
+      <p class="text-xs text-white/30">
+        &copy; {year} Parinama Group. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,40 @@
+---
+const stats = [
+  {
+    value: '$10.1T',
+    label: 'India climate infra need 2030–2070',
+    source: 'CEEW-CEF',
+  },
+  {
+    value: '$150M',
+    label: 'Target fund size',
+    source: 'SEBI Cat-II AIF · Hard cap $200M',
+  },
+  {
+    value: '15–20%',
+    label: 'Blended net IRR (USD, post-fees)',
+    source: 'Target return',
+  },
+  {
+    value: '40+',
+    label: 'Institutional partners engaged',
+    source: 'Aligned & active',
+  },
+];
+---
+
+<section class="bg-forest text-white">
+  <div class="section-container py-10 md:py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+      {stats.map((stat, i) => (
+        <div class={`text-center ${i < stats.length - 1 ? 'md:border-r md:border-white/20' : ''}`}>
+          <div class="font-serif text-3xl md:text-4xl font-bold text-lime-DEFAULT leading-none mb-2">
+            {stat.value}
+          </div>
+          <div class="text-sm text-white/80 leading-snug mb-1">{stat.label}</div>
+          <div class="text-xs text-white/40 uppercase tracking-wide">{stat.source}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
