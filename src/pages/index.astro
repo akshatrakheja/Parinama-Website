@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StatStrip from '../components/StatStrip.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import NatureGlyph from '../components/NatureGlyph.astro';
 
 const platformRows = [
   {
@@ -86,30 +87,38 @@ const teamMembers = [
   <!-- ═══════════════════════════════════════════════════════
        HERO — full viewport, 1fr / 3fr axis
   ═══════════════════════════════════════════════════════ -->
-  <section class="relative h-screen min-h-[640px] overflow-hidden bg-cream">
+  <section class="relative h-screen min-h-[640px] overflow-hidden bg-forest">
 
-    <!-- IMAGE SLOT — replace with <img> when ready -->
-    <div class="absolute inset-0 bg-cream" aria-hidden="true"></div>
-    <!-- <img src="/earth.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" /> -->
+    <!-- BACKGROUND VIDEO — drop your Pexels file at public/hero.mp4 -->
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/hero-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="/hero.mp4" type="video/mp4" />
+    </video>
 
-    <div class="absolute inset-0 flex flex-col justify-between">
+    <!-- FOREST GREEN TINT OVERLAY -->
+    <div class="absolute inset-0 bg-forest/60 mix-blend-multiply" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-forest/40 via-transparent to-forest/70" aria-hidden="true"></div>
 
-      <!-- TOP: left col empty, title sits in right 3fr col -->
-      <div class="section-container pt-10 md:pt-0">
-        <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;">
-          <div></div>
-          <div>
-            <h1 class="font-display font-normal text-black leading-none"
-                style="font-size: clamp(4rem, 10vw, 12rem); letter-spacing: -0.05em;">
-              Capital with<br/>a Conscience.
-            </h1>
-     
-     
-            <div class="border-t border-black/15 mt-6 pt-4 flex items-center justify-between">
-              <span class="text-xs font-sans text-black/30 tracking-wide">Parinama © 2026</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-black/20"></span>
-            </div>
-          </div>
+    <!-- CONTENT LAYER -->
+    <div class="relative z-10 h-full flex flex-col justify-between">
+
+      <!-- TOP: heading spans ALL columns -->
+      <div class="section-container pt-20 md:pt-28">
+        <h1 class="font-display font-normal text-cream leading-none"
+            style="font-size: clamp(4rem, 10vw, 12rem); letter-spacing: -0.05em;">
+          Capital with<br/>a Conscience.
+        </h1>
+        <div class="border-t border-white/20 mt-6 pt-4 flex items-center justify-between">
+          <span class="text-xs font-sans text-white/50 tracking-wide">Parinama © 2026</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
         </div>
       </div>
 
@@ -117,16 +126,16 @@ const teamMembers = [
       <div class="section-container pb-14 md:pb-20">
         <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;align-items:end;">
           <div>
-            <p class="text-xs font-sans text-black/40 uppercase tracking-widest">Who we are:</p>
+            <p class="text-xs font-sans text-gold-DEFAULT uppercase tracking-widest">Who we are:</p>
           </div>
           <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
-               style="border-left:1px solid rgb(0 0 0/0.08);padding-left:2rem;">
-            <p class="font-sans text-black font-normal leading-snug max-w-xl"
+               style="border-left:1px solid rgb(255 255 255/0.2);padding-left:2rem;">
+            <p class="font-sans text-cream font-normal leading-snug max-w-xl"
                style="font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.05em;">
-              Architecting and financing India's climate transition.
-              Deploying principled, patient capital into technologies that reshape energy production and consumption.
+              Architecting and financing India's <span class="hl-sage">climate transition.</span>
+              Deploying <span class="hl-gold">principled, patient capital</span> into technologies that reshape energy production and consumption.
             </p>
-            <a href="/contact" class="btn-primary flex-shrink-0 text-base font-semibold">
+            <a href="/contact" class="btn-ghost flex-shrink-0 text-base font-semibold">
               Invest with us →
             </a>
           </div>
@@ -188,7 +197,7 @@ const teamMembers = [
       <div></div>
       <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
         <p class="font-display font-bold text-forest text-lg md:text-xl max-w-sm leading-snug">
-          Three businesses. One goal. A platform — not a portfolio.
+          Three businesses. <span class="hl-sage">One goal.</span> A <span class="hl-gold">platform — not a portfolio.</span>
         </p>
         <a href="/platform" class="btn-primary self-start">
           Full platform detail →
@@ -215,7 +224,8 @@ const teamMembers = [
     <!-- editorial-grid: left 1fr label | right 3fr interactive panel -->
     <div class="editorial-grid py-0">
       <div class="pt-8 pb-16">
-        <span class="text-xs font-sans text-black/40 uppercase tracking-widest">Moats:</span>
+        <span class="text-xs font-sans text-forest uppercase tracking-widest">Moats:</span>
+        <NatureGlyph variant="contour" class="mt-10 mr-10 w-32 md:w-40 h-auto" />
       </div>
 
       <!-- Right 3fr: two-column interactive panel -->
@@ -295,38 +305,46 @@ const teamMembers = [
     <SectionHeader
       number={3}
       title="The Fund"
-      leftLabel="Parameter"
-      rightLabel="Detail"
+      leftLabel=""
+      rightLabel=""
     />
 
-    <div>
-      {fundRows.map((row, i) => (
-        <div class={`editorial-grid py-8 md:py-10 ${i < fundRows.length - 1 ? 'border-b border-black/10' : ''}`}>
-          <div class="pt-0.5">
-            <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
-          </div>
-          <div class="flex flex-col md:flex-row gap-3 md:gap-8">
-            <div class="md:w-40 flex-shrink-0">
-              <p class="font-display font-semibold text-black/60 text-sm">{row.label}</p>
-            </div>
-            <p class="font-sans text-black text-sm leading-relaxed flex-1">
-              {row.value}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+    <!-- Fund terms — two-column label/value grid -->
+    <div class="editorial-grid py-8 md:py-12">
+      <div>
+        <span class="text-xs font-sans text-forest uppercase tracking-widest">Terms:</span>
+        <NatureGlyph variant="flow" class="mt-10 mr-10 w-32 md:w-40 h-auto" />
+      </div>
 
-    <!-- Disclaimer + CTA -->
-    <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
-      <div></div>
-      <div class="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
-        <p class="text-xs text-black/40 font-sans max-w-sm leading-relaxed">
+      <div>
+        <!-- Eyebrow + CTA row -->
+        <div class="flex items-start justify-between gap-6 mb-8 md:mb-10">
+          <p class="text-xs font-sans text-forest uppercase tracking-widest pt-1">
+            Climate fund at a glance
+          </p>
+          <a href="/fund" class="btn-secondary self-start flex-shrink-0">
+            Full fund details →
+          </a>
+        </div>
+
+        <!-- Two-column terms grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-20">
+          {fundRows.map((row) => (
+            <div class="flex items-baseline gap-6 py-4 border-b border-black/10">
+              <span class="w-32 md:w-36 flex-shrink-0 text-xs font-sans text-forest uppercase tracking-widest">
+                {row.label}
+              </span>
+              <span class="flex-1 font-sans text-black text-sm leading-relaxed">
+                {row.value}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Footnote -->
+        <p class="text-xs text-black/40 font-sans leading-relaxed mt-8 max-w-xl">
           For informational purposes only. Does not constitute an offer to buy or sell securities. Subject to SEBI AIF Regulations 2012.
         </p>
-        <a href="/fund" class="btn-primary self-start">
-          Full fund details →
-        </a>
       </div>
     </div>
 
@@ -376,7 +394,7 @@ const teamMembers = [
     <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
       <div></div>
       <div class="flex flex-col gap-3">
-        <p class="text-xs font-sans text-black/50 uppercase tracking-widest">Backed by the 4P Architecture</p>
+        <p class="text-xs font-sans text-forest uppercase tracking-widest">Backed by the 4P Architecture</p>
         <div class="flex flex-wrap gap-6">
           {['Public', 'Private', 'Philanthropic', 'People'].map(p => (
             <div class="flex items-center gap-2">
@@ -432,7 +450,7 @@ const teamMembers = [
     </div>
 
     <div class="py-6 border-t border-black/10 flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
-      <p class="font-sans text-black/40 text-xs uppercase tracking-widest">
+      <p class="font-sans text-forest text-xs uppercase tracking-widest">
         Operators · Capital allocators · Policy architects
       </p>
       <a href="/team" class="btn-secondary self-start">Full team →</a>
@@ -457,7 +475,7 @@ const teamMembers = [
         <div>
           <h2 class="font-display font-bold text-white text-3xl md:text-5xl lg:text-6xl leading-tight mb-3 tracking-tight max-w-2xl">
             India's climate transition is entering its
-            <span class="text-gold-DEFAULT"> make-or-break window.</span>
+            <span class="hl-gold">make-or-break window.</span>
           </h2>
           <p class="font-sans text-white/60 text-sm md:text-base mb-4 max-w-md">
             Partner with India's first full-stack climate platform.

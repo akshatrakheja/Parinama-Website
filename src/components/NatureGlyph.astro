@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: 'contour' | 'flow';
+  class?: string;
+}
+
+const { variant = 'contour', class: className = '' } = Astro.props;
+---
+
+{variant === 'contour' && (
+  <svg
+    class={className}
+    viewBox="0 0 200 260"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    role="presentation"
+  >
+    <!-- Topographic / organic contour lines -->
+    <path d="M30 130 C30 70 90 40 130 60 C175 82 180 150 140 185 C105 215 45 200 35 160" stroke="#1d3b2d" stroke-width="1" opacity="0.5"/>
+    <path d="M45 132 C46 84 92 60 124 76 C160 94 162 148 132 176 C104 200 58 188 50 156" stroke="#1d3b2d" stroke-width="1" opacity="0.4"/>
+    <path d="M60 134 C62 98 96 80 120 92 C146 106 146 146 124 166 C102 184 70 176 65 152" stroke="#77C788" stroke-width="1.25" opacity="0.9"/>
+    <path d="M75 136 C78 112 100 100 116 108 C132 118 130 144 116 156 C100 168 82 162 80 148" stroke="#1d3b2d" stroke-width="1" opacity="0.35"/>
+    <circle cx="100" cy="134" r="4" fill="#D19900"/>
+  </svg>
+)}
+
+{variant === 'flow' && (
+  <svg
+    class={className}
+    viewBox="0 0 200 260"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    role="presentation"
+  >
+    <!-- Flowing leaf / river arcs -->
+    <path d="M40 40 C120 60 120 200 40 220" stroke="#1d3b2d" stroke-width="1" opacity="0.5"/>
+    <path d="M62 40 C142 60 142 200 62 220" stroke="#1d3b2d" stroke-width="1" opacity="0.4"/>
+    <path d="M84 40 C164 60 164 200 84 220" stroke="#77C788" stroke-width="1.25" opacity="0.9"/>
+    <path d="M106 40 C186 60 186 200 106 220" stroke="#1d3b2d" stroke-width="1" opacity="0.3"/>
+    <line x1="40" y1="130" x2="150" y2="130" stroke="#D19900" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="150" cy="130" r="4" fill="#D19900"/>
+  </svg>
+)}

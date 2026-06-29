@@ -64,14 +64,28 @@
 
   /* Column sub-labels */
   .col-label {
-    @apply text-xs font-sans text-black/40 uppercase tracking-widest;
+    @apply text-xs font-sans text-forest uppercase tracking-widest;
   }
 
-  /* Highlight spans */
+  /* Eyebrow / left-column labels */
+  .eyebrow {
+    @apply text-xs font-sans text-forest uppercase tracking-widest;
+  }
+
+  /* Highlight spans — marker / background highlight style */
+  .hl-gold,
+  .hl-sage {
+    padding: 0.05em 0.22em;
+    border-radius: 0.05em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
   .hl-gold {
-    @apply text-gold-DEFAULT;
+    background-color: theme('colors.gold.DEFAULT');
+    color: #000;
   }
   .hl-sage {
-    @apply text-sage-DEFAULT;
+    background-color: theme('colors.sage.DEFAULT');
+    color: #000;
   }
 }

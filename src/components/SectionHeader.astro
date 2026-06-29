@@ -41,14 +41,16 @@ const {
   </div>
 </div>
 
-<!-- Sub-label row -->
-<div class="editorial-grid pb-3">
-  <div></div>
-  <div class="flex gap-0">
-    <span class={`col-label flex-shrink-0 ${leftLabelClass}`}>{leftLabel}</span>
-    <span class="col-label">{rightLabel}</span>
+<!-- Sub-label row (omitted when both labels are empty) -->
+{(leftLabel || rightLabel) && (
+  <div class="editorial-grid pb-3">
+    <div></div>
+    <div class="flex gap-0">
+      <span class={`col-label flex-shrink-0 ${leftLabelClass}`}>{leftLabel}</span>
+      <span class="col-label">{rightLabel}</span>
+    </div>
   </div>
-</div>
+)}
 
 <!-- Bottom rule -->
 <hr class="border-t border-black/20 w-full" />
