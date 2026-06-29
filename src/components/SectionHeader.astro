@@ -1,0 +1,47 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  leftLabel?: string;
+  rightLabel?: string;
+}
+
+const {
+  number,
+  title,
+  leftLabel = 'Section',
+  rightLabel = 'Description',
+} = Astro.props;
+---
+
+<!-- Top rule -->
+<hr class="border-t border-black w-full" />
+
+<!-- Header row: [N:] | TITLE | bullet -->
+<div class="editorial-grid items-start py-5 md:py-7">
+  <!-- Number badge -->
+  <div class="pt-1">
+    <span class="inline-block bg-black text-white font-display font-bold text-xs px-2 py-1 leading-none">
+      {number}:
+    </span>
+  </div>
+  <!-- Title + bullet row -->
+  <div class="flex items-start justify-between gap-4">
+    <h2 class="font-display font-bold text-forest text-4xl md:text-6xl lg:text-7xl leading-none tracking-tight">
+      {title}
+    </h2>
+    <span class="w-2 h-2 rounded-full bg-black mt-3 flex-shrink-0"></span>
+  </div>
+</div>
+
+<!-- Sub-label row -->
+<div class="editorial-grid pb-4">
+  <div></div>
+  <div class="flex gap-0">
+    <span class="col-label w-40 flex-shrink-0">{leftLabel}</span>
+    <span class="col-label">{rightLabel}</span>
+  </div>
+</div>
+
+<!-- Bottom rule -->
+<hr class="border-t border-black w-full" />

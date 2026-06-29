@@ -1,44 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StatStrip from '../components/StatStrip.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import CardGrid from '../components/CardGrid.astro';
-import TeamPlaceholder from '../components/TeamPlaceholder.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 
-const platformCards = [
+const platformRows = [
   {
-    title: 'Venture Builder',
-    tagline: 'Start the companies India needs.',
+    name: 'Venture Builder',
+    desc: 'Start the companies India needs.',
     detail: '2% management fee + 20% carry, Impact-NAV accounting.',
     metric: '3 active investments',
-    icon: '⚡',
-    href: '/platform',
   },
   {
-    title: 'Advisory & JV',
-    tagline: 'Engineer transition pathways for corporates, sovereigns, DFIs.',
+    name: 'Advisory & JV',
+    desc: 'Engineer transition pathways for corporates, sovereigns, DFIs.',
     detail: 'Retainer + success fee + JV equity share.',
     metric: '2 engaged, 3 near close',
-    icon: '🤝',
-    href: '/platform',
   },
   {
-    title: 'Ecosystem Architect',
-    tagline: 'Convene ICIC, deliver via ICIITE.',
+    name: 'Ecosystem Architect',
+    desc: 'Convene ICIC, deliver via ICIITE.',
     detail: 'Philanthropic + GoI grant funding.',
     metric: 'ICIC + ICIITE in pilot',
-    icon: '🌐',
-    href: '/platform',
   },
 ];
 
-const moatCards = [
-  { title: 'Full-Stack Platform',    tagline: 'End-to-end: capital → advisory → ecosystem.', icon: '◈' },
-  { title: 'Institutional Pedigree', tagline: 'Operators and allocators, not just advisors.',  icon: '🏛' },
-  { title: 'Sovereign Signal',       tagline: 'Aligned with national climate transition agenda.', icon: '⚑' },
-  { title: 'Builder-LP Duality',     tagline: 'We build companies and invest in them.',       icon: '⟳' },
-  { title: 'Blended Capital',        tagline: 'Public + private + philanthropic stacks.',     icon: '⊕' },
-  { title: 'Impact-NAV',             tagline: 'Proprietary impact-adjusted valuation model.', icon: '◎' },
+const moats = [
+  { name: 'Full-Stack Platform',    desc: 'End-to-end: capital → advisory → ecosystem.' },
+  { name: 'Institutional Pedigree', desc: 'Operators and allocators, not just advisors.' },
+  { name: 'Sovereign Signal',       desc: 'Aligned with national climate transition agenda.' },
+  { name: 'Builder-LP Duality',     desc: 'We build companies and invest in them.' },
+  { name: 'Blended Capital',        desc: 'Public + private + philanthropic stacks.' },
+  { name: 'Impact-NAV',             desc: 'Proprietary impact-adjusted valuation model.' },
+];
+
+const fundRows = [
+  { label: 'Structure',    value: 'SEBI Cat-II AIF + Singapore VCC feeder + evergreen' },
+  { label: 'Target size',  value: '$150M (hard cap $200M TBD)' },
+  { label: 'First close',  value: 'Q4 2026 · $50M anchor committed' },
+  { label: 'Ticket size',  value: '$1M – $10M per LP' },
+  { label: 'Strategy',     value: 'Climate-only · Pre-seed → Series A' },
+  { label: 'Target IRR',   value: '15–20% blended net (USD, post-fees)' },
+];
+
+const ecosystemRows = [
+  {
+    name: 'ICIC',
+    desc: 'India Climate Investors Council — the convening table. Investor-led governance with 8 active working groups.',
+    tags: ['Investor-led', 'Governance body', '8 working groups'],
+  },
+  {
+    name: 'ICIITE',
+    desc: 'The delivery engine: accelerator → FOAK → blended finance → scale → MRV.',
+    tags: ['Accelerator', 'FOAK financing', 'Blended finance', 'MRV'],
+  },
 ];
 
 const teamMembers = [
@@ -50,272 +64,342 @@ const teamMembers = [
 ---
 
 <BaseLayout>
-  <!-- 1. HERO -->
-  <section class="relative min-h-screen flex items-center pt-16 overflow-hidden bg-charcoal">
-    <!-- Background pattern -->
-    <div class="absolute inset-0 opacity-20" aria-hidden="true">
-      <div class="absolute inset-0 bg-gradient-to-br from-forest-900 via-charcoal to-sky-dark"></div>
-      <!-- Geometric accent lines -->
-      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)"/>
-      </svg>
-    </div>
 
-    <!-- Hero content -->
-    <div class="relative section-container py-20 md:py-28 z-10">
-      <!-- Chip -->
-      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-lime-DEFAULT animate-pulse"></span>
-        <span class="text-xs font-medium text-white/80 tracking-wide">SEBI Cat-II AIF · First close Q4 2026</span>
-      </div>
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-forest text-white pt-24 pb-0">
+    <div class="section-container">
 
-      <div class="max-w-4xl">
-        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-          India's climate<br/>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-lime-DEFAULT to-sky-brand">
-            transformation
-          </span><br/>
-          is the investment.
-        </h1>
+      <!-- Top rule -->
+      <hr class="border-t border-white/20 w-full" />
 
-        <p class="text-lg md:text-xl text-white/70 font-medium mb-3 max-w-2xl leading-relaxed">
-          India's first full-stack climate platform — AIF · Advisory · Ecosystem.
-        </p>
-        <p class="text-base text-white/50 mb-10 max-w-xl leading-relaxed">
-          India's climate transformation is underway. This is the entry point.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/contact" class="btn-primary">
-            Investor Enquiry
-          </a>
-          <a href="/platform" class="btn-ghost">
-            Explore the Platform
-          </a>
+      <!-- Badge + tagline row -->
+      <div class="editorial-grid items-start py-6 md:py-10">
+        <div class="pt-2">
+          <span class="inline-block bg-white text-forest font-display font-bold text-xs px-2 py-1 leading-none">
+            EST
+          </span>
+        </div>
+        <div>
+          <p class="text-white/50 text-xs font-sans uppercase tracking-widest mb-4">
+            SEBI Cat-II AIF · First close Q4 2026
+          </p>
+          <h1 class="font-display font-bold leading-none tracking-tight text-4xl md:text-6xl lg:text-8xl mb-6">
+            India's climate<br/>
+            <span class="text-gold-DEFAULT">transformation</span><br/>
+            is the investment.
+          </h1>
+          <p class="text-white/70 text-base md:text-lg max-w-xl mb-2 font-sans">
+            India's first full-stack climate platform —
+            <span class="text-sage-DEFAULT font-semibold">AIF · Advisory · Ecosystem.</span>
+          </p>
+          <p class="text-white/50 text-sm max-w-md mb-10 font-sans">
+            India's climate transformation is underway. This is the entry point.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="/contact" class="btn-ghost">
+              Investor Enquiry →
+            </a>
+            <a href="/platform" class="inline-flex items-center justify-center px-6 py-3 text-white/60 font-display font-semibold text-sm tracking-wide hover:text-white transition-colors">
+              Explore the Platform ↓
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Hero visual placeholder -->
-      <div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-2/5 h-96 mr-8">
-        <div class="w-full h-full rounded-2xl bg-white/5 border border-dashed border-white/20 flex flex-col items-center justify-center gap-3">
-          <svg class="w-12 h-12 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <span class="text-xs text-white/30 font-medium">Hero image — placeholder</span>
-          <span class="text-xs text-white/20">Full-bleed image + dark overlay</span>
-        </div>
-      </div>
+      <hr class="border-t border-white/20 w-full" />
     </div>
   </section>
 
-  <!-- 2. STAT STRIP -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       STAT STRIP (Section 0 — always visible)
+  ═══════════════════════════════════════════════════════ -->
   <StatStrip />
 
-  <!-- 3. PLATFORM OVERVIEW -->
-  <section class="section-py bg-cream">
-    <div class="section-container">
-      <SectionHeading
-        eyebrow="The Platform"
-        heading="Three businesses. One goal."
-        subheading="A platform — not a portfolio. Each pillar reinforces the others."
-      />
-      <CardGrid cards={platformCards} columns={3} />
-    </div>
-  </section>
 
-  <!-- 4. SIX MOATS -->
-  <section class="section-py bg-forest">
-    <div class="section-container">
-      <SectionHeading
-        eyebrow="Why Parinama"
-        heading="Six structural moats."
-        subheading="Built-in advantages that compound over time. Full detail on the Platform page."
-        theme="dark"
-      />
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-        {moatCards.map(card => (
-          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/15 transition-colors">
-            <div class="text-2xl mb-3">{card.icon}</div>
-            <h3 class="font-serif font-semibold text-white text-base mb-1">{card.title}</h3>
-            <p class="text-sm text-white/60 leading-snug">{card.tagline}</p>
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 1 — THE PLATFORM
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={1}
+      title="The Platform"
+      leftLabel="Pillar"
+      rightLabel="What we do"
+    />
+
+    <!-- Content rows -->
+    <div>
+      {platformRows.map((row, i) => (
+        <div class={`editorial-grid py-6 md:py-8 ${i < platformRows.length - 1 ? 'border-b border-black/10' : ''}`}>
+          <div class="pt-0.5">
+            <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
           </div>
-        ))}
-      </div>
-      <div class="text-center mt-10">
-        <a href="/platform" class="btn-ghost text-sm">
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8">
+            <div class="md:w-40 flex-shrink-0">
+              <p class="font-display font-semibold text-forest text-sm leading-snug">
+                {row.name}
+              </p>
+            </div>
+            <div class="flex-1">
+              <p class="font-sans text-black text-sm leading-relaxed mb-1">
+                {row.desc}
+              </p>
+              <p class="font-sans text-black/50 text-xs leading-relaxed mb-2">
+                {row.detail}
+              </p>
+              <span class="text-xs font-semibold text-gold-DEFAULT uppercase tracking-wide">
+                {row.metric}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Closing tagline + CTA -->
+    <div class="editorial-grid py-8 border-t border-black/10">
+      <div></div>
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
+        <p class="font-display font-bold text-forest text-lg md:text-xl max-w-sm leading-snug">
+          Three businesses. One goal. A platform — not a portfolio.
+        </p>
+        <a href="/platform" class="btn-primary self-start">
           Full platform detail →
         </a>
       </div>
     </div>
+
+    <hr class="border-t border-black" />
   </section>
 
-  <!-- 5. FUND SNAPSHOT -->
-  <section class="section-py bg-white">
-    <div class="section-container">
-      <div class="max-w-5xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-forest mb-3">The Fund</p>
-            <h2 class="font-serif text-3xl md:text-4xl font-bold text-charcoal mb-6 leading-tight">
-              Purpose-built for India's climate transition.
-            </h2>
-            <ul class="space-y-4">
-              {[
-                { label: 'Structure', value: 'SEBI Cat-II AIF + Singapore VCC feeder + evergreen' },
-                { label: 'Target size', value: '$150M (hard cap $200M TBD)' },
-                { label: 'First close', value: 'Q4 2026 · $50M anchor committed' },
-                { label: 'Ticket size', value: '$1M – $10M per LP' },
-                { label: 'Strategy', value: 'Climate-only · Pre-seed → Series A' },
-              ].map(item => (
-                <li class="flex gap-4 items-start">
-                  <span class="text-forest mt-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                  </span>
-                  <div>
-                    <span class="text-xs font-semibold uppercase tracking-wide text-charcoal/40 block mb-0.5">{item.label}</span>
-                    <span class="text-sm text-charcoal/80">{item.value}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div class="mt-8">
-              <a href="/fund" class="btn-primary text-sm">
-                Full fund details →
-              </a>
-            </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 2 — SIX MOATS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={2}
+      title="Six Moats"
+      leftLabel="Moat"
+      rightLabel="Why it matters"
+    />
+
+    <div>
+      {moats.map((moat, i) => (
+        <div class={`editorial-grid py-5 md:py-6 ${i < moats.length - 1 ? 'border-b border-black/10' : ''}`}>
+          <div class="pt-0.5">
+            <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
           </div>
-          <div class="bg-forest/5 rounded-2xl p-8 border border-forest/10">
-            <div class="text-center mb-6">
-              <div class="font-serif text-5xl font-bold text-forest mb-1">$150M</div>
-              <div class="text-sm text-charcoal/50">Target Fund Size</div>
+          <div class="flex flex-col md:flex-row gap-3 md:gap-8">
+            <div class="md:w-40 flex-shrink-0">
+              <p class="font-display font-semibold text-forest text-sm">{moat.name}</p>
             </div>
-            <div class="space-y-3">
-              {[
-                { label: 'Blended Net IRR', value: '15–20%', sub: 'USD, post-fees (target)' },
-                { label: 'Hard Cap', value: '$200M', sub: 'TBD, subject to SEBI' },
-                { label: 'Anchor', value: '$50M', sub: 'First close target' },
-              ].map(item => (
-                <div class="flex justify-between items-center py-3 border-b border-forest/10 last:border-0">
-                  <div>
-                    <div class="text-xs text-charcoal/40 uppercase tracking-wide mb-0.5">{item.label}</div>
-                    <div class="text-xs text-charcoal/30">{item.sub}</div>
-                  </div>
-                  <div class="font-serif font-bold text-lg text-forest">{item.value}</div>
-                </div>
-              ))}
+            <p class="font-sans text-black text-sm leading-relaxed flex-1">{moat.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <hr class="border-t border-black" />
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 3 — THE FUND
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={3}
+      title="The Fund"
+      leftLabel="Parameter"
+      rightLabel="Detail"
+    />
+
+    <div>
+      {fundRows.map((row, i) => (
+        <div class={`editorial-grid py-5 md:py-6 ${i < fundRows.length - 1 ? 'border-b border-black/10' : ''}`}>
+          <div class="pt-0.5">
+            <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
+          </div>
+          <div class="flex flex-col md:flex-row gap-3 md:gap-8">
+            <div class="md:w-40 flex-shrink-0">
+              <p class="font-display font-semibold text-black/60 text-sm">{row.label}</p>
             </div>
-            <p class="text-xs text-charcoal/30 mt-4 text-center leading-relaxed">
-              For informational purposes only. Subject to SEBI AIF Regulations 2012.
+            <p class="font-sans text-black text-sm leading-relaxed flex-1">
+              {row.value}
             </p>
           </div>
         </div>
-      </div>
+      ))}
     </div>
-  </section>
 
-  <!-- 6. ECOSYSTEM PREVIEW -->
-  <section class="section-py bg-cream">
-    <div class="section-container">
-      <SectionHeading
-        eyebrow="The Ecosystem"
-        heading="Convene. Deliver. Scale."
-        subheading="Two interlocking bodies — ICIC for governance, ICIITE for delivery. Backed by the 4P architecture."
-      />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div class="bg-white rounded-2xl p-8 border border-forest/10">
-          <div class="w-12 h-12 rounded-xl bg-forest text-white flex items-center justify-center text-xl mb-5 font-serif font-bold">I</div>
-          <h3 class="font-serif text-xl font-bold text-charcoal mb-3">ICIC</h3>
-          <p class="text-charcoal/60 text-sm leading-relaxed mb-4">
-            India Climate Investors Council — the convening table. Investor-led governance with 8 active working groups.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            {['Investor-led', 'Governance body', '8 working groups'].map(tag => (
-              <span class="text-xs bg-forest/5 text-forest rounded-full px-3 py-1 border border-forest/10">{tag}</span>
-            ))}
-          </div>
-        </div>
-        <div class="bg-white rounded-2xl p-8 border border-forest/10">
-          <div class="w-12 h-12 rounded-xl bg-sky-brand/20 text-sky-dark flex items-center justify-center text-xl mb-5 font-serif font-bold">I</div>
-          <h3 class="font-serif text-xl font-bold text-charcoal mb-3">ICIITE</h3>
-          <p class="text-charcoal/60 text-sm leading-relaxed mb-4">
-            The delivery engine: accelerator → FOAK → blended finance → scale → MRV. End-to-end pipeline.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            {['Accelerator', 'FOAK financing', 'Blended finance', 'MRV'].map(tag => (
-              <span class="text-xs bg-sky-brand/10 text-sky-dark rounded-full px-3 py-1 border border-sky-brand/20">{tag}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div class="bg-forest/5 rounded-2xl p-6 border border-forest/10">
-        <p class="text-sm text-charcoal/60 text-center mb-4 font-medium">Backed by the 4P Architecture</p>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-8">
-          {['Public', 'Private', 'Philanthropic', 'People'].map((p, i) => (
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-forest/40"></span>
-              <span class="text-sm font-semibold text-charcoal/70">{p}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="text-center mt-8">
-        <a href="/ecosystem" class="btn-secondary text-sm">
-          Explore the ecosystem →
+    <!-- Disclaimer + CTA -->
+    <div class="editorial-grid py-8 border-t border-black/10">
+      <div></div>
+      <div class="flex flex-col md:flex-row md:items-start gap-6 md:gap-12">
+        <p class="text-xs text-black/40 font-sans max-w-sm leading-relaxed">
+          For informational purposes only. Does not constitute an offer to buy or sell securities. Subject to SEBI AIF Regulations 2012.
+        </p>
+        <a href="/fund" class="btn-primary self-start">
+          Full fund details →
         </a>
       </div>
     </div>
+
+    <hr class="border-t border-black" />
   </section>
 
-  <!-- 7. TEAM PREVIEW -->
-  <section class="section-py bg-white">
-    <div class="section-container">
-      <SectionHeading
-        eyebrow="The Team"
-        heading="Operators, capital allocators, and policy architects."
-        subheading="Built by people who have done it before — across climate, finance, and sovereign institutions."
-      />
-      <TeamPlaceholder members={teamMembers} />
-      <div class="text-center mt-10">
-        <a href="/team" class="btn-secondary text-sm">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 4 — ECOSYSTEM
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={4}
+      title="The Ecosystem"
+      leftLabel="Body"
+      rightLabel="Role"
+    />
+
+    <div>
+      {ecosystemRows.map((row, i) => (
+        <div class={`editorial-grid py-6 md:py-8 ${i < ecosystemRows.length - 1 ? 'border-b border-black/10' : ''}`}>
+          <div class="pt-0.5">
+            <span class="text-xs font-sans text-black/30 tabular-nums">0{i + 1}</span>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8">
+            <div class="md:w-40 flex-shrink-0">
+              <p class="font-display font-bold text-forest text-xl md:text-2xl leading-none">
+                {row.name}
+              </p>
+            </div>
+            <div class="flex-1">
+              <p class="font-sans text-black text-sm leading-relaxed mb-3">{row.desc}</p>
+              <div class="flex flex-wrap gap-2">
+                {row.tags.map(tag => (
+                  <span class="text-xs font-sans border border-black/20 text-black/60 px-2 py-0.5">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- 4P architecture -->
+    <div class="editorial-grid py-6 border-t border-black/10">
+      <div></div>
+      <div class="flex flex-col gap-3">
+        <p class="text-xs font-sans text-black/50 uppercase tracking-widest">Backed by the 4P Architecture</p>
+        <div class="flex flex-wrap gap-6">
+          {['Public', 'Private', 'Philanthropic', 'People'].map(p => (
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-DEFAULT flex-shrink-0"></span>
+              <span class="font-display font-semibold text-sm text-black">{p}</span>
+            </div>
+          ))}
+        </div>
+        <a href="/ecosystem" class="btn-secondary self-start mt-2">
+          Explore ecosystem →
+        </a>
+      </div>
+    </div>
+
+    <hr class="border-t border-black" />
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 5 — TEAM
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={5}
+      title="The Team"
+      leftLabel="Name"
+      rightLabel="Role"
+    />
+
+    <div>
+      {teamMembers.map((member, i) => (
+        <div class={`editorial-grid py-5 md:py-6 ${i < teamMembers.length - 1 ? 'border-b border-black/10' : ''}`}>
+          <div class="pt-0.5">
+            <!-- Placeholder avatar -->
+            <div class="w-8 h-8 border border-dashed border-black/20 flex items-center justify-center">
+              <svg class="w-4 h-4 text-black/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+            <div class="md:w-40 flex-shrink-0">
+              <p class="font-display font-semibold text-forest text-sm">{member.name}</p>
+            </div>
+            <p class="font-sans text-black/60 text-sm">{member.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="editorial-grid py-6 border-t border-black/10">
+      <div></div>
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
+        <p class="font-sans text-black/50 text-sm italic">
+          Operators, capital allocators, and policy architects.
+        </p>
+        <a href="/team" class="btn-secondary self-start">
           Full team →
         </a>
       </div>
     </div>
+
+    <hr class="border-t border-black" />
   </section>
 
-  <!-- 8. CLOSING CTA -->
-  <section class="section-py bg-charcoal relative overflow-hidden">
-    <div class="absolute inset-0 opacity-30" aria-hidden="true">
-      <div class="absolute inset-0 bg-gradient-to-br from-forest-900 to-charcoal"></div>
-    </div>
-    <div class="relative section-container text-center">
-      <p class="text-xs font-semibold uppercase tracking-widest text-lime-DEFAULT mb-4">Act Now</p>
-      <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-6 max-w-3xl mx-auto leading-tight">
-        India's climate transition is entering its make-or-break window.
-      </h2>
-      <p class="text-white/60 text-base md:text-lg mb-10 max-w-xl mx-auto">
-        Partner with India's first full-stack climate platform.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="btn-primary">
-          Investor Enquiry
-        </a>
-        <a href="mailto:investors@parinama.com" class="btn-ghost">
-          Request data room
-        </a>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 6 — CLOSING CTA
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-forest text-white">
+    <div class="section-container py-0">
+
+      <hr class="border-t border-white/20" />
+
+      <div class="editorial-grid items-start py-10 md:py-16">
+        <div class="pt-1">
+          <span class="inline-block bg-white text-forest font-display font-bold text-xs px-2 py-1 leading-none">6:</span>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-white text-3xl md:text-5xl lg:text-6xl leading-tight mb-6 tracking-tight max-w-2xl">
+            India's climate transition is entering its
+            <span class="text-gold-DEFAULT"> make-or-break window.</span>
+          </h2>
+          <p class="font-sans text-white/60 text-sm md:text-base mb-8 max-w-md">
+            Partner with India's first full-stack climate platform.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mb-8">
+            <a href="/contact" class="btn-ghost">
+              Investor Enquiry →
+            </a>
+            <a href="mailto:investors@parinama.com" class="inline-flex items-center justify-center px-6 py-3 text-white/60 font-display font-semibold text-sm tracking-wide hover:text-white transition-colors">
+              Request data room →
+            </a>
+          </div>
+          <p class="text-white/30 text-xs font-sans">
+            <a href="mailto:investors@parinama.com" class="hover:text-white/60 transition-colors">
+              investors@parinama.com
+            </a>
+          </p>
+        </div>
       </div>
-      <p class="mt-8 text-white/40 text-sm">
-        <a href="mailto:investors@parinama.com" class="hover:text-white/70 transition-colors">
-          investors@parinama.com
-        </a>
-      </p>
+
+      <hr class="border-t border-white/20" />
     </div>
   </section>
+
 </BaseLayout>

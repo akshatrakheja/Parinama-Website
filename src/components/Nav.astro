@@ -10,27 +10,28 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur-md border-b border-forest/10">
+<header class="fixed top-0 inset-x-0 z-50 bg-cream border-b border-black">
   <div class="section-container">
-    <nav class="flex items-center justify-between h-16 md:h-18">
+    <nav class="flex items-center justify-between h-14">
+
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group" aria-label="Parinama Home">
-        <div class="w-8 h-8 rounded-full bg-forest flex items-center justify-center flex-shrink-0 group-hover:bg-forest-700 transition-colors">
-          <span class="text-white text-xs font-serif font-bold">P</span>
+      <a href="/" class="flex items-center gap-2.5 group" aria-label="Parinama Home">
+        <div class="w-6 h-6 bg-forest flex items-center justify-center flex-shrink-0">
+          <span class="text-white text-xs font-display font-bold">P</span>
         </div>
-        <span class="font-serif font-semibold text-lg text-charcoal tracking-tight">Parinama</span>
+        <span class="font-display font-bold text-base text-black tracking-tight">Parinama</span>
       </a>
 
       <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-1" role="list">
+      <ul class="hidden md:flex items-center gap-0" role="list">
         {navLinks.map(link => (
           <li>
             <a
               href={link.href}
-              class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              class={`px-4 py-1.5 text-sm font-display font-medium transition-colors border-l border-transparent ${
                 currentPath === link.href
-                  ? 'text-forest bg-forest/10'
-                  : 'text-charcoal/70 hover:text-forest hover:bg-forest/5'
+                  ? 'text-forest border-l border-black'
+                  : 'text-black/60 hover:text-black'
               }`}
             >
               {link.label}
@@ -49,7 +50,7 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-md text-charcoal/70 hover:text-forest hover:bg-forest/5 transition-colors"
+        class="md:hidden p-2 text-black hover:text-forest transition-colors"
         aria-label="Toggle menu"
         aria-expanded="false"
       >
@@ -62,17 +63,17 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-forest/10 bg-cream">
-    <div class="section-container py-4 flex flex-col gap-1">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-black bg-cream">
+    <div class="section-container py-4 flex flex-col gap-0">
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="px-3 py-2.5 rounded-md text-sm font-medium text-charcoal/70 hover:text-forest hover:bg-forest/5 transition-colors"
+          class="py-3 text-sm font-display font-medium text-black/70 hover:text-black border-b border-black/10 transition-colors"
         >
           {link.label}
         </a>
       ))}
-      <div class="pt-3 border-t border-forest/10 mt-2">
+      <div class="pt-4">
         <a href="/contact" class="btn-primary w-full text-center text-sm">
           Investor Enquiry
         </a>

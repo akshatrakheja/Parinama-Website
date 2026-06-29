@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,27 +9,64 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply font-sans text-charcoal bg-cream antialiased;
+    @apply font-sans text-black bg-cream antialiased;
+    font-size: 16px;
   }
-  h1, h2, h3 {
-    @apply font-serif;
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight;
   }
 }
 
 @layer components {
+  /* Buttons — square corners, editorial style */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-forest text-white font-semibold text-sm tracking-wide transition-all duration-200 hover:bg-forest-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-black text-white font-display font-semibold text-sm tracking-wide transition-all duration-150 hover:bg-forest focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-forest text-forest font-semibold text-sm tracking-wide transition-all duration-200 hover:bg-forest hover:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-6 py-3 border border-black text-black font-display font-semibold text-sm tracking-wide transition-all duration-150 hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-white text-white font-semibold text-sm tracking-wide transition-all duration-200 hover:bg-white hover:text-forest focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-6 py-3 border border-white text-white font-display font-semibold text-sm tracking-wide transition-all duration-150 hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
   }
+  .btn-forest {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-forest text-white font-display font-semibold text-sm tracking-wide transition-all duration-150 hover:bg-forest-700 focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2;
+  }
+
+  /* Layout */
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-6 lg:px-12;
   }
   .section-py {
-    @apply py-16 md:py-24;
+    @apply py-0;
+  }
+
+  /* Editorial grid layout */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0;
+  }
+  @media (min-width: 768px) {
+    .editorial-grid {
+      grid-template-columns: 7rem 1fr;
+    }
+  }
+
+  /* Section divider */
+  .section-rule {
+    @apply border-t border-black w-full;
+  }
+
+  /* Column sub-labels */
+  .col-label {
+    @apply text-xs font-sans text-black/40 uppercase tracking-widest;
+  }
+
+  /* Highlight spans */
+  .hl-gold {
+    @apply text-gold-DEFAULT;
+  }
+  .hl-sage {
+    @apply text-sage-DEFAULT;
   }
 }
