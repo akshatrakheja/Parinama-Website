@@ -40,21 +40,27 @@
     @apply py-24 md:py-32 lg:py-40;
   }
 
-  /* Editorial grid — 1fr (25%) left label column : 3fr (75%) right content column */
+  /* Editorial grid — single column on mobile, 1fr/3fr on md+ */
   .editorial-grid {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr;
     gap: 0;
   }
-  /* Vertical rule + gutter on content column */
-  .editorial-grid > :nth-child(2) {
-    border-left: 1px solid rgb(0 0 0 / 0.08);
-    padding-left: 2rem;
+  @media (min-width: 768px) {
+    .editorial-grid {
+      grid-template-columns: 1fr 3fr;
+    }
+    .editorial-grid > :nth-child(2) {
+      border-left: 1px solid rgb(0 0 0 / 0.08);
+      padding-left: 2rem;
+    }
   }
   /* Dark-background variant (forest sections) */
-  .editorial-grid-dark > :nth-child(2) {
-    border-left: 1px solid rgb(255 255 255 / 0.1);
-    padding-left: 2rem;
+  @media (min-width: 768px) {
+    .editorial-grid-dark > :nth-child(2) {
+      border-left: 1px solid rgb(255 255 255 / 0.1);
+      padding-left: 2rem;
+    }
   }
 
   /* Section divider */

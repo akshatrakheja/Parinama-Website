@@ -87,7 +87,7 @@ const teamMembers = [
   <!-- ═══════════════════════════════════════════════════════
        HERO — full viewport, 1fr / 3fr axis
   ═══════════════════════════════════════════════════════ -->
-  <section class="relative h-screen min-h-[640px] overflow-hidden bg-forest">
+  <section class="relative h-screen min-h-[520px] md:min-h-[640px] overflow-hidden bg-forest">
 
     <!-- BACKGROUND VIDEO — drop your Pexels file at public/hero.mp4 -->
     <video
@@ -110,32 +110,31 @@ const teamMembers = [
     <!-- CONTENT LAYER -->
     <div class="relative z-10 h-full flex flex-col justify-between">
 
-      <!-- TOP: heading spans ALL columns -->
+      <!-- TOP: heading -->
       <div class="section-container pt-20 md:pt-28">
         <h1 class="font-display font-normal text-cream leading-none"
-            style="font-size: clamp(4rem, 10vw, 12rem); letter-spacing: -0.05em;">
+            style="font-size: clamp(4.2rem, 10vw, 12rem); letter-spacing: -0.05em;">
           Capital with<br/>a Conscience.
         </h1>
-        <div class="border-t border-white/20 mt-6 pt-4 flex items-center justify-between">
+        <div class="border-t border-white/20 mt-4 md:mt-6 pt-3 md:pt-4 flex items-center justify-between">
           <span class="text-xs font-sans text-white/50 tracking-wide">Parinama © 2026</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-white/40 hidden md:block"></span>
         </div>
       </div>
 
-      <!-- BOTTOM: label in left 1fr, tagline + CTA in right 3fr -->
-      <div class="section-container pb-14 md:pb-20">
-        <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;align-items:end;">
-          <div>
-            <p class="text-xs font-sans text-gold-DEFAULT uppercase tracking-widest">Who we are:</p>
+      <!-- BOTTOM: stacked on mobile, 1fr/3fr on desktop -->
+      <div class="section-container pb-10 md:pb-20">
+        <div class="hero-bottom-grid">
+          <div class="mb-3 md:mb-0">
+            <p class="text-xs font-sans text-white/50 uppercase tracking-widest">Who we are:</p>
           </div>
-          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
-               style="border-left:1px solid rgb(255 255 255/0.2);padding-left:2rem;">
+          <div class="hero-bottom-content flex flex-col md:flex-row md:items-end md:justify-between gap-5 md:gap-6">
             <p class="font-sans text-cream font-normal leading-snug max-w-xl"
-               style="font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.05em;">
+               style="font-size: clamp(1.1rem, 3vw, 2rem); letter-spacing: -0.03em;">
               Architecting and financing India's <span class="hl-sage">climate transition.</span>
               Deploying <span class="hl-gold">principled, patient capital</span> into technologies that reshape energy production and consumption.
             </p>
-            <a href="/contact" class="btn-ghost flex-shrink-0 text-base font-semibold">
+            <a href="/contact" class="btn-ghost flex-shrink-0 text-sm md:text-base font-semibold self-start md:self-auto">
               Invest with us →
             </a>
           </div>
@@ -194,7 +193,7 @@ const teamMembers = [
 
     <!-- Closing tagline + CTA -->
     <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
-      <div></div>
+      <div class="hidden md:block"></div>
       <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
         <p class="font-display font-bold text-forest text-lg md:text-xl max-w-sm leading-snug">
           Three businesses. <span class="hl-sage">One goal.</span> A <span class="hl-gold">platform — not a portfolio.</span>
@@ -221,50 +220,73 @@ const teamMembers = [
       leftLabelClass="w-[38%]"
     />
 
-    <!-- editorial-grid: left 1fr label | right 3fr interactive panel -->
-    <div class="editorial-grid py-0">
-      <div class="pt-8 pb-16">
-        <span class="text-xs font-sans text-forest uppercase tracking-widest">Moats:</span>
-        <NatureGlyph variant="contour" class="mt-10 mr-10 w-32 md:w-40 h-auto" />
-      </div>
+    <!-- ── MOBILE: accordion ── -->
+    <div class="md:hidden py-4">
+      {moats.map((moat, i) => {
+        const colors = ['#77C788','#D19900','#77C788','#D19900','#77C788','#D19900'];
+        return (
+          <div class="moat-accordion border-b border-black/10" data-idx={String(i)} data-color={colors[i]}>
+            <button class="moat-acc-head w-full text-left py-4 flex items-start gap-3">
+              <span class="text-[10px] font-mono text-black/25 tabular-nums mt-1 flex-shrink-0 leading-none">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="moat-acc-label font-display font-semibold leading-tight text-black/40"
+                    style="font-size: 1.1rem;">
+                {moat.name}
+              </span>
+            </button>
+            <div class="moat-acc-body">
+              <p class="font-sans text-black/70 text-sm leading-relaxed pb-5 pl-6">
+                {moat.desc}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
 
-      <!-- Right 3fr: two-column interactive panel -->
-      <div class="flex min-h-[28rem] py-0">
-
-        <!-- Clickable list — ~38% of the right column, border-r acts as divider -->
-        <div class="w-[38%] border-r border-black/10 flex-shrink-0">
-          {moats.map((moat, i) => {
-            const colors = ['#77C788','#D19900','#77C788','#D19900','#77C788','#D19900'];
-            return (
-              <button
-                class="moat-tab group w-full text-left border-b border-black/10 py-5 pr-8 flex items-start gap-3 transition-all duration-150"
-                data-idx={String(i)}
-                data-desc={moat.desc}
-                data-color={colors[i]}
-              >
-                <span class="text-[10px] font-mono text-black/25 tabular-nums mt-1 flex-shrink-0 leading-none">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span
-                  class="moat-tab-label font-display font-semibold leading-tight text-black/40 group-hover:text-black transition-colors duration-150"
-                  style="font-size: clamp(1rem, 1.5vw, 1.35rem);"
-                >
-                  {moat.name}
-                </span>
-              </button>
-            );
-          })}
+    <!-- ── DESKTOP: editorial-grid + side-by-side panel ── -->
+    <div class="hidden md:block">
+      <div class="editorial-grid py-0">
+        <div class="pt-8 pb-16">
+          <span class="text-xs font-sans text-forest uppercase tracking-widest">Moats:</span>
+          <NatureGlyph variant="contour" class="mt-10 mr-10 w-32 md:w-40 h-auto" />
         </div>
 
-        <!-- Description panel — fills remaining ~62% -->
-        <div class="flex-1 pl-10 md:pl-14 pt-5 pb-10">
-          <p
-            id="moat-panel"
-            class="font-sans text-black leading-relaxed transition-opacity duration-200"
-            style="font-size: clamp(1rem, 1.4vw, 1.3rem); max-width: 52ch;"
-          >
-            {moats[0].desc}
-          </p>
+        <div class="flex min-h-[28rem] py-0">
+          <div class="w-[38%] border-r border-black/10 flex-shrink-0">
+            {moats.map((moat, i) => {
+              const colors = ['#77C788','#D19900','#77C788','#D19900','#77C788','#D19900'];
+              return (
+                <button
+                  class="moat-tab group w-full text-left border-b border-black/10 py-5 pr-8 flex items-start gap-3 transition-all duration-150"
+                  data-idx={String(i)}
+                  data-desc={moat.desc}
+                  data-color={colors[i]}
+                >
+                  <span class="text-[10px] font-mono text-black/25 tabular-nums mt-1 flex-shrink-0 leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span
+                    class="moat-tab-label font-display font-semibold leading-tight text-black/40 group-hover:text-black transition-colors duration-150"
+                    style="font-size: clamp(1rem, 1.5vw, 1.35rem);"
+                  >
+                    {moat.name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div class="flex-1 pl-10 md:pl-14 pt-5 pb-10">
+            <p
+              id="moat-panel"
+              class="font-sans text-black leading-relaxed transition-opacity duration-200"
+              style="font-size: clamp(1rem, 1.4vw, 1.3rem); max-width: 52ch;"
+            >
+              {moats[0].desc}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -273,8 +295,9 @@ const teamMembers = [
   </section>
 
   <script>
+    /* ── Desktop: tab panel ── */
     const tabs  = document.querySelectorAll<HTMLButtonElement>('.moat-tab');
-    const panel = document.getElementById('moat-panel') as HTMLElement;
+    const panel = document.getElementById('moat-panel');
 
     function activate(idx: number) {
       tabs.forEach((tab, i) => {
@@ -282,13 +305,11 @@ const teamMembers = [
         if (!label) return;
         const color = (tab as HTMLElement).dataset.color ?? '';
         if (i === idx) {
-          // Active: highlight background + black text
           (tab as HTMLElement).style.backgroundColor = color;
           (tab as HTMLElement).style.paddingLeft = '0.75rem';
           label.style.color = 'rgb(0 0 0)';
           label.style.opacity = '1';
         } else {
-          // Inactive: no background
           (tab as HTMLElement).style.backgroundColor = '';
           (tab as HTMLElement).style.paddingLeft = '';
           label.style.color = '';
@@ -296,6 +317,7 @@ const teamMembers = [
         }
       });
 
+      if (!panel) return;
       const desc = tabs[idx]?.dataset.desc ?? '';
       panel.style.opacity = '0';
       setTimeout(() => {
@@ -304,8 +326,37 @@ const teamMembers = [
       }, 140);
     }
 
-    tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
-    activate(0);
+    if (tabs.length) {
+      tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
+      activate(0);
+    }
+
+    /* ── Mobile: accordion ── */
+    const accItems = document.querySelectorAll<HTMLElement>('.moat-accordion');
+    accItems.forEach((item, i) => {
+      const head = item.querySelector('.moat-acc-head') as HTMLElement;
+      const body = item.querySelector('.moat-acc-body') as HTMLElement;
+      const label = item.querySelector('.moat-acc-label') as HTMLElement;
+
+      body.style.maxHeight = i === 0 ? body.scrollHeight + 'px' : '0';
+      body.style.overflow = 'hidden';
+      body.style.transition = 'max-height 0.3s ease';
+      if (i === 0 && label) { label.style.color = '#000'; label.style.opacity = '1'; }
+
+      head?.addEventListener('click', () => {
+        const isOpen = body.style.maxHeight !== '0px';
+        accItems.forEach(el => {
+          const b = el.querySelector('.moat-acc-body') as HTMLElement;
+          const l = el.querySelector('.moat-acc-label') as HTMLElement;
+          b.style.maxHeight = '0';
+          if (l) { l.style.color = ''; l.style.opacity = '0.4'; }
+        });
+        if (!isOpen) {
+          body.style.maxHeight = body.scrollHeight + 'px';
+          if (label) { label.style.color = '#000'; label.style.opacity = '1'; }
+        }
+      });
+    });
   </script>
 
 
@@ -341,8 +392,8 @@ const teamMembers = [
         <!-- Two-column terms grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-20">
           {fundRows.map((row) => (
-            <div class="flex items-baseline gap-6 py-4 border-b border-black/10">
-              <span class="w-32 md:w-36 flex-shrink-0 text-xs font-sans text-forest uppercase tracking-widest">
+            <div class="flex items-baseline gap-4 md:gap-6 py-4 border-b border-black/10">
+              <span class="w-24 md:w-36 flex-shrink-0 text-xs font-sans text-forest uppercase tracking-widest">
                 {row.label}
               </span>
               <span class="flex-1 font-sans text-black text-sm leading-relaxed">
@@ -403,7 +454,7 @@ const teamMembers = [
 
     <!-- 4P architecture -->
     <div class="editorial-grid py-10 md:py-14 border-t border-black/10">
-      <div></div>
+      <div class="hidden md:block"></div>
       <div class="flex flex-col gap-3">
         <p class="text-xs font-sans text-forest uppercase tracking-widest">Backed by the 4P Architecture</p>
         <div class="flex flex-wrap gap-6">
@@ -435,11 +486,16 @@ const teamMembers = [
       rightLabel=""
     />
 
-    <!-- Full-width 4-column photo strip — no grid offset, edge to edge -->
-    <div class="overflow-x-auto">
-      <div class="flex md:grid md:grid-cols-4 min-w-max md:min-w-0">
-        {teamMembers.map((member) => (
-          <div class="w-64 md:w-auto flex-shrink-0 border-l border-black/10 first:border-l-0 flex flex-col">
+    <!-- Team grid — 2×2 on mobile, 4-col on desktop, full bleed -->
+    <div class="-mx-6 md:-mx-12 lg:-mx-16">
+      <div class="grid grid-cols-2 md:grid-cols-4">
+        {teamMembers.map((member, mi) => (
+          <div class:list={[
+            'flex flex-col border-t border-black/10 md:border-t-0',
+            'border-l border-black/10',
+            mi === 0 && 'border-l-0',
+            mi === 2 && 'border-l-0 md:border-l',
+          ]}>
             <!-- Photo placeholder — replace inner div with <img> when ready -->
             <div class="bg-black/5 w-full flex items-center justify-center"
                  style="aspect-ratio: 3/4;">
@@ -511,4 +567,21 @@ const teamMembers = [
     </div>
   </section>
 
+  <style>
+    /* Hero bottom — stacked on mobile, 1fr/3fr on desktop */
+    .hero-bottom-grid { display: block; }
+    .hero-bottom-content { border-left: none; padding-left: 0; }
+    @media (min-width: 768px) {
+      .hero-bottom-grid {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 0;
+        align-items: end;
+      }
+      .hero-bottom-content {
+        border-left: 1px solid rgb(255 255 255 / 0.2);
+        padding-left: 2rem;
+      }
+    }
+  </style>
 </BaseLayout>
