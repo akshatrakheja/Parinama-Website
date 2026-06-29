@@ -233,23 +233,27 @@ const teamMembers = [
 
         <!-- Clickable list — ~38% of the right column, border-r acts as divider -->
         <div class="w-[38%] border-r border-black/10 flex-shrink-0">
-          {moats.map((moat, i) => (
-            <button
-              class="moat-tab group w-full text-left border-b border-black/10 py-5 pr-8 flex items-start gap-3 transition-colors duration-150"
-              data-idx={String(i)}
-              data-desc={moat.desc}
-            >
-              <span class="text-[10px] font-mono text-black/25 tabular-nums mt-1 flex-shrink-0 leading-none">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span
-                class="moat-tab-label font-display font-semibold leading-tight text-black/40 group-hover:text-black transition-colors duration-150"
-                style="font-size: clamp(1rem, 1.5vw, 1.35rem);"
+          {moats.map((moat, i) => {
+            const colors = ['#77C788','#D19900','#77C788','#D19900','#77C788','#D19900'];
+            return (
+              <button
+                class="moat-tab group w-full text-left border-b border-black/10 py-5 pr-8 flex items-start gap-3 transition-all duration-150"
+                data-idx={String(i)}
+                data-desc={moat.desc}
+                data-color={colors[i]}
               >
-                {moat.name}
-              </span>
-            </button>
-          ))}
+                <span class="text-[10px] font-mono text-black/25 tabular-nums mt-1 flex-shrink-0 leading-none">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span
+                  class="moat-tab-label font-display font-semibold leading-tight text-black/40 group-hover:text-black transition-colors duration-150"
+                  style="font-size: clamp(1rem, 1.5vw, 1.35rem);"
+                >
+                  {moat.name}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         <!-- Description panel — fills remaining ~62% -->
@@ -276,10 +280,17 @@ const teamMembers = [
       tabs.forEach((tab, i) => {
         const label = tab.querySelector('.moat-tab-label') as HTMLElement | null;
         if (!label) return;
+        const color = (tab as HTMLElement).dataset.color ?? '';
         if (i === idx) {
+          // Active: highlight background + black text
+          (tab as HTMLElement).style.backgroundColor = color;
+          (tab as HTMLElement).style.paddingLeft = '0.75rem';
           label.style.color = 'rgb(0 0 0)';
           label.style.opacity = '1';
         } else {
+          // Inactive: no background
+          (tab as HTMLElement).style.backgroundColor = '';
+          (tab as HTMLElement).style.paddingLeft = '';
           label.style.color = '';
           label.style.opacity = '0.35';
         }
