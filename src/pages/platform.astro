@@ -1,10 +1,491 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const businessUnits = [
+  {
+    tag: 'Venture Builder',
+    name: 'Parinama Ventures',
+    desc: 'Pre-seed → Series A; FOAK + DOAK; operator-led with corporate offtake.',
+    rev: '2% management fee + 20% carry, Impact-NAV accounting.',
+    proof: '3 active investments',
+    accent: 'sage',
+  },
+  {
+    tag: 'Advisory & JV',
+    name: 'Advisory Services & JV',
+    desc: 'Corporates, sovereigns and DFIs — decarbonisation roadmaps, climate-finance structuring, inbound capital + JV/FEMA.',
+    rev: 'Retainer $10K–$25K/mo + success fees + JV share.',
+    proof: '2 engaged · 3 near close',
+    accent: 'gold',
+  },
+  {
+    tag: 'Ecosystem Architect',
+    name: 'Parinama Capital',
+    desc: 'ICIC convening + ICIITE delivery, standards & MRV.',
+    rev: 'Philanthropic + GoI grant funding.',
+    proof: 'ICIC + ICIITE piloting',
+    accent: 'sage',
+  },
+];
+
+const vcContrast = [
+  { vc: '7-yr exit window',           india: 'Avg 15-yr hardware cycles' },
+  { vc: 'Power-law 10–100x returns',  india: 'Cleantech 1.0: ~90% of Series A failed' },
+  { vc: '80%+ gross margins',         india: 'Hardware margins negative to ~30% early' },
+  { vc: 'Liquid IPO/M&A exits',       india: '3 material climate exits in India in a decade' },
+  { vc: 'Customers pay green premium', india: 'Indian customers buy on price; OPEX wins' },
+];
+
+const vcStats = [
+  { num: '<3%',   label: 'reach Series B+',                 src: 'MUFG 2024' },
+  { num: '~90%',  label: 'Cleantech 1.0 Series A failed',   src: 'MIT / Bessemer' },
+  { num: '$120B', label: 'annual unmet NDC green-finance gap', src: 'CPI 2024' },
+];
+
+// Capability matrix — values taken from the differentiator deck (screenshot).
+const matrixCols = ['Parinama', 'Funds', 'Accelerators', 'DFIs'];
+const matrixRows = [
+  { cap: 'Direct capital deployment',       vals: ['yes', 'yes', 'no',  'partial'] },
+  { cap: 'Operator-level venture building', vals: ['yes', 'no',  'yes', 'no'] },
+  { cap: 'Sovereign + DFI authority',       vals: ['yes', 'no',  'no',  'yes'] },
+  { cap: 'Verified Impact-NAV',             vals: ['yes', 'no',  'no',  'partial'] },
+  { cap: 'Blended-finance architecture',    vals: ['yes', 'no',  'no',  'yes'] },
+  { cap: 'Builder-LP duality',              vals: ['yes', 'no',  'no',  'no'] },
+];
+
+const moats = [
+  {
+    name: 'Full-Stack Platform',
+    desc: 'Most climate funds deploy capital. Parinama architects the entire system — from seed investment to corporate advisory to ecosystem governance. By owning all three levers simultaneously, we eliminate handoffs, compress the time from insight to impact, and capture value at every layer of the transition.',
+    proof: 'Integrated across all three pillars',
+  },
+  {
+    name: 'Institutional Pedigree',
+    desc: 'Our partners have built and exited climate businesses, structured DFI mandates, and sat on both sides of the LP–GP table. This is operating experience — not academic thesis. We know what it takes to build in India\'s regulatory and capital environment, and we have the networks to open doors that capital alone cannot.',
+    proof: 'Citi · Dell · PwC · Baraka',
+  },
+  {
+    name: 'Sovereign Signal',
+    desc: 'India\'s climate transition is a $2.8 trillion national priority. Parinama is built in alignment with this agenda — working alongside GoI institutions, accessing policy infrastructure, and positioning portfolio companies where sovereign tailwinds accelerate both adoption and returns.',
+    proof: 'NIIF · MoEFCC · SEBI · IFC · GCF · BII · FMO',
+  },
+  {
+    name: 'Builder-LP Duality',
+    desc: 'Parinama is simultaneously a fund manager and a company builder. Our portfolio companies are not just financial bets — they are entities we incubate, staff, and scale. The fund participates in value it directly helps create, aligning incentives in a way a passive allocator never can.',
+    proof: 'Fund manager + company builder',
+  },
+  {
+    name: 'Blended Capital',
+    desc: 'Not all climate infrastructure can be funded by equity alone. Our platform stacks philanthropic grants, DFI concessional debt, government incentives, and private equity into single investment vehicles — making deal sizes and return profiles viable across asset classes and risk appetites.',
+    proof: 'Grants + concessional debt + equity',
+  },
+  {
+    name: 'Impact-NAV',
+    desc: 'We developed Impact-NAV, a proprietary valuation framework that adjusts portfolio value for climate additionality, carbon intensity reduction, and transition risk. LPs receive a dual-lens view — rigorous financial returns alongside a principled accounting of real-world climate impact.',
+    proof: '15–20% carry tied to verified outcomes',
+  },
+];
 ---
+
 <BaseLayout title="Platform — Parinama">
-  <div class="pt-32 pb-24 section-container text-center">
-    <p class="text-xs font-semibold uppercase tracking-widest text-forest mb-4">Coming soon</p>
-    <h1 class="font-serif text-4xl font-bold text-charcoal mb-4">Platform Overview</h1>
-    <p class="text-charcoal/60 mb-8">Full page in progress. <a href="/" class="text-forest underline">Back to home</a></p>
-  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO — the thesis + flywheel
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container pt-16 md:pt-24">
+    <div class="editorial-grid items-start pb-12 md:pb-16">
+      <div class="pt-2">
+        <span class="eyebrow">The thesis:</span>
+      </div>
+      <div>
+        <h1 class="font-display font-normal text-black leading-none tracking-tight"
+            style="font-size: clamp(2.75rem, 6vw, 5.5rem); letter-spacing: -0.05em;">
+          No other platform covers the entire spectrum.
+        </h1>
+        <p class="font-sans text-black/70 mt-6 max-w-2xl leading-relaxed"
+           style="font-size: clamp(1.1rem, 1.6vw, 1.4rem);">
+          Funds invest. Accelerators incubate. Consultancies advise.
+          Parinama does all three — a flywheel where every advisory client is a
+          future LP, every LP a future co-investor.
+        </p>
+
+        <!-- Flywheel infographic -->
+        <div class="mt-10 md:mt-14 border border-black/10 bg-white/50 p-4 md:p-6">
+          <div class="flex items-center justify-between mb-6">
+            <span class="eyebrow">The flywheel</span>
+            <span class="text-[11px] font-mono text-black/30 uppercase tracking-widest">Self-reinforcing</span>
+          </div>
+
+          <div class="flex justify-center">
+            <div class="flex justify-center w-full">
+              <svg viewBox="0 0 460 440" class="w-full max-w-[36rem] h-auto" role="img"
+                   aria-label="Self-reinforcing flywheel: advisory client becomes a future LP, every LP a future co-investor, every co-investor brings the next mandate">
+                <defs>
+                  <marker id="fw-arrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+                    <path d="M0 0 L9 4.5 L0 9 z" fill="#1d3b2d" />
+                  </marker>
+                </defs>
+
+                <!-- faint rotating rim -->
+                <circle class="fw-rim" cx="230" cy="210" r="140" fill="none"
+                        stroke="#1d3b2d" stroke-width="1" stroke-dasharray="2 9" opacity="0.3" />
+
+                <!-- directional arcs (clockwise A -> B -> C -> A) -->
+                <path d="M 277.9 78.4 A 140 140 0 0 1 367.9 234.3" fill="none" stroke="#1d3b2d" stroke-width="1.75" marker-end="url(#fw-arrow)" opacity="0.7" />
+                <path d="M 320 317.2 A 140 140 0 0 1 140 317.2"   fill="none" stroke="#1d3b2d" stroke-width="1.75" marker-end="url(#fw-arrow)" opacity="0.7" />
+                <path d="M 92.1 234.3 A 140 140 0 0 1 182.1 78.4" fill="none" stroke="#1d3b2d" stroke-width="1.75" marker-end="url(#fw-arrow)" opacity="0.7" />
+
+                <!-- traveling momentum dot -->
+                <circle r="5" fill="#D19900">
+                  <animateMotion dur="7s" repeatCount="indefinite"
+                                 path="M 230 70 A 140 140 0 1 1 229.99 70" />
+                </circle>
+
+                <!-- center label -->
+                <text x="230" y="204" text-anchor="middle" font-family="Geist, sans-serif" font-size="12" font-weight="600" fill="#1d3b2d" opacity="0.55" letter-spacing="1.5">EVERY RELATIONSHIP</text>
+                <text x="230" y="222" text-anchor="middle" font-family="Geist, sans-serif" font-size="12" font-weight="600" fill="#1d3b2d" opacity="0.55" letter-spacing="1.5">COMPOUNDS</text>
+
+                <!-- nodes -->
+                <g>
+                  <circle cx="230" cy="70" r="52" fill="#f7f6f2" stroke="#77C788" stroke-width="2.5" />
+                  <text x="230" y="66" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#1d3b2d">Advisory</text>
+                  <text x="230" y="83" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#1d3b2d">client</text>
+                </g>
+                <g>
+                  <circle cx="351" cy="280" r="52" fill="#f7f6f2" stroke="#D19900" stroke-width="2.5" />
+                  <text x="351" y="285" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="600" fill="#1d3b2d">LP</text>
+                </g>
+                <g>
+                  <circle cx="109" cy="280" r="52" fill="#f7f6f2" stroke="#1d3b2d" stroke-width="2.5" />
+                  <text x="109" y="276" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#1d3b2d">Co-</text>
+                  <text x="109" y="293" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#1d3b2d">investor</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 1 — THE STACK (layered explorer)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={1}
+      title="The Stack"
+      leftLabel="Layer"
+      rightLabel="What it does"
+    />
+
+    <div class="editorial-grid py-8 md:py-12">
+      <div class="pt-1">
+        <span class="eyebrow">The stack:</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start">
+
+        <!-- Accordion of layers -->
+        <div class="border-t border-black/10">
+          {businessUnits.map((u, i) => (
+            <div class={`layer-item border-b border-black/10 ${i === 0 ? 'active' : ''}`} data-i={i}>
+              <button class="layer-head w-full text-left flex items-center justify-between gap-4 py-5" aria-expanded={i === 0 ? 'true' : 'false'}>
+                <span class="flex items-baseline gap-4">
+                  <span class="layer-num font-display font-bold leading-none tabular-nums"
+                        style="font-size: clamp(2rem, 4vw, 3.25rem);">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span class="font-display font-semibold text-black leading-tight"
+                        style="font-size: clamp(1.1rem, 1.6vw, 1.5rem);">
+                    {u.name}
+                  </span>
+                </span>
+                <span class="layer-plus text-2xl text-black/40 font-light leading-none flex-shrink-0"></span>
+              </button>
+              <div class="layer-body">
+                <div class="pb-6 md:pl-[4.5rem]">
+                  <span class={`inline-block text-[11px] font-sans uppercase tracking-widest px-2 py-1 mb-3 ${u.accent === 'gold' ? 'bg-gold/15 text-gold-dark' : 'bg-sage/20 text-forest'}`}>
+                    {u.tag}
+                  </span>
+                  <p class="font-sans text-black/70 text-sm leading-relaxed mb-4 max-w-md">
+                    {u.desc}
+                  </p>
+                  <p class="text-[11px] font-sans text-forest uppercase tracking-widest mb-1">Revenue</p>
+                  <p class="font-sans text-black/80 text-sm mb-3">{u.rev}</p>
+                  <span class={`text-xs font-semibold uppercase tracking-wide ${u.accent === 'gold' ? 'text-gold-dark' : 'text-forest'}`}>
+                    {u.proof}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Exploded isometric rings -->
+        <div class="flex justify-center lg:sticky lg:top-28">
+          <svg viewBox="0 0 320 360" class="w-full max-w-[20rem] h-auto" role="img"
+               aria-label="Three stacked platform layers">
+            {businessUnits.map((u, i) => {
+              const cy = 86 + i * 98;
+              const band = `M 40 ${cy} L 40 ${cy + 22} A 120 34 0 0 0 280 ${cy + 22} L 280 ${cy} A 120 34 0 0 1 40 ${cy} Z`;
+              return (
+                <g class={`ring ${i === 0 ? 'active' : ''}`} data-ring={i}>
+                  <path class="ring-band" d={band} />
+                  <ellipse class="ring-face" cx="160" cy={cy} rx="120" ry="34" />
+                  <ellipse cx="160" cy={cy} rx="46" ry="13" fill="#f7f6f2" />
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-t border-black" />
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 2 — WHY TRADITIONAL VC FAILS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={2}
+      title="VC Fails Climate"
+      leftLabel="The VC playbook"
+      rightLabel="India's reality"
+      leftLabelClass="w-[42%]"
+    />
+
+    <div class="editorial-grid py-8 md:py-12">
+      <div class="pt-1">
+        <span class="eyebrow">Why:</span>
+      </div>
+      <div>
+        <!-- Contrast rows -->
+        <div>
+          {vcContrast.map((row) => (
+            <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 py-4 border-b border-black/10">
+              <p class="md:w-[42%] flex-shrink-0 font-sans text-black/40 line-through decoration-black/20 text-sm md:text-base">
+                {row.vc}
+              </p>
+              <span class="hidden md:inline text-forest text-lg flex-shrink-0">→</span>
+              <p class="flex-1 font-display font-semibold text-black text-sm md:text-base leading-snug">
+                {row.india}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Stat callouts -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-black/10 mt-12 border border-black/10">
+          {vcStats.map((s) => (
+            <div class="bg-cream p-6">
+              <p class="font-display font-bold text-black leading-none mb-3"
+                 style="font-size: clamp(2.5rem, 4.5vw, 3.75rem); letter-spacing: -0.04em;">
+                {s.num}
+              </p>
+              <p class="font-sans text-black/70 text-sm leading-snug mb-2">{s.label}</p>
+              <p class="font-mono text-[11px] text-black/40 uppercase tracking-wide">{s.src}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-t border-black" />
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 3 — THE DIFFERENTIATOR MATRIX
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={3}
+      title="The Matrix"
+      leftLabel=""
+      rightLabel=""
+    />
+
+    <div class="py-8 md:py-12 overflow-x-auto">
+      <!-- one grid so all columns align; columns render as cards -->
+      <div class="grid min-w-[680px]"
+           style="grid-template-columns: minmax(180px, 1.7fr) repeat(4, 1fr); column-gap: 0.5rem;">
+
+        <!-- Header row -->
+        <div class="flex items-end pb-4">
+          <span class="eyebrow">Capability</span>
+        </div>
+        {matrixCols.map((col, ci) => (
+          <div class={`text-center pt-5 pb-4 px-2 rounded-t-2xl ${ci === 0 ? 'bg-white border-2 border-b-0 border-forest/30' : 'bg-black/[0.03]'}`}>
+            {ci === 0 && <span class="block w-10 h-0.5 bg-forest mx-auto mb-3"></span>}
+            <span class={`font-display font-semibold tracking-tight ${ci === 0 ? 'text-forest' : 'text-black/55'}`}
+                  style="font-size: clamp(0.85rem, 1.2vw, 1.1rem);">
+              {col}
+            </span>
+          </div>
+        ))}
+
+        <!-- Body rows -->
+        {matrixRows.map((row, ri) => (
+          <>
+            <div class="flex items-center py-4 pr-3">
+              <div class="flex items-center justify-between w-full bg-forest/5 rounded-lg px-4 py-3">
+                <span class="font-sans text-black text-sm md:text-base">{row.cap}</span>
+                <span class="text-forest/40 text-sm">›</span>
+              </div>
+            </div>
+            {row.vals.map((v, ci) => {
+              const isParinama = ci === 0;
+              const isLast = ri === matrixRows.length - 1;
+              const cardCls = isParinama
+                ? `bg-white border-x-2 border-forest/30 ${isLast ? 'border-b-2 rounded-b-2xl' : ''}`
+                : 'bg-black/[0.02]';
+              return (
+                <div class={`flex items-center justify-center py-4 ${cardCls}`}>
+                  {v === 'yes' && (
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full text-white text-sm font-bold"
+                          style="background-color:#36A35B;">✓</span>
+                  )}
+                  {v === 'partial' && (
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full text-white text-sm font-bold"
+                          style="background-color:#D9C94B;">~</span>
+                  )}
+                  {v === 'no' && (
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full text-white text-base font-bold"
+                          style="background-color:#C4C9CE;">−</span>
+                  )}
+                </div>
+              );
+            })}
+          </>
+        ))}
+      </div>
+
+      <!-- Bottom banner -->
+      <div class="bg-forest text-cream text-center font-display font-semibold tracking-tight mt-10 py-5 px-6"
+           style="font-size: clamp(1.1rem, 2vw, 1.6rem);">
+        The only fully integrated platform of its kind in India.
+      </div>
+    </div>
+
+    <hr class="border-t border-black" />
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 4 — SIX MOATS (full detail tiles)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-cream section-container py-0">
+    <SectionHeader
+      number={4}
+      title="Six Moats"
+      leftLabel="Moat"
+      rightLabel="In full"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 border-l border-t border-black/10">
+      {moats.map((m, i) => (
+        <div class="border-r border-b border-black/10 p-6 md:p-8 flex flex-col">
+          <span class="text-xs font-mono text-black/30 tabular-nums mb-4">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h3 class="font-display font-semibold text-black leading-tight mb-3"
+              style="font-size: clamp(1.3rem, 1.8vw, 1.7rem);">
+            {m.name}
+          </h3>
+          <p class="font-sans text-black/70 text-sm leading-relaxed mb-5 flex-1">
+            {m.desc}
+          </p>
+          <span class="text-xs font-semibold text-forest uppercase tracking-wide">
+            {m.proof}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <hr class="border-t border-black mt-0" />
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       CLOSING CTA
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-forest section-container py-16 md:py-24">
+    <div class="editorial-grid editorial-grid-dark items-start">
+      <div class="pt-1">
+        <span class="text-xs font-sans text-gold-DEFAULT uppercase tracking-widest">Next:</span>
+      </div>
+      <div>
+        <h2 class="font-display font-normal text-cream leading-tight tracking-tight mb-6 max-w-2xl"
+            style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.04em;">
+          One platform. Every lever of the transition.
+        </h2>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="/fund" class="btn-ghost">Explore the fund →</a>
+          <a href="/contact" class="inline-flex items-center justify-center px-6 py-3 text-white/60 font-display font-semibold text-sm tracking-wide hover:text-white transition-colors">
+            Investor enquiry →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Layered stack explorer */
+    .layer-body {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease;
+    }
+    .layer-item.active .layer-body {
+      max-height: 360px;
+      opacity: 1;
+    }
+    .layer-num { color: rgb(0 0 0 / 0.22); transition: color 0.25s ease; }
+    .layer-item.active .layer-num { color: #1d3b2d; }
+    .layer-plus::after { content: '+'; }
+    .layer-item.active .layer-plus::after { content: '\2013'; }
+
+    /* Isometric rings */
+    .ring-face { fill: #ffffff; stroke: #1d3b2d; stroke-width: 1.5; transition: fill 0.25s ease; }
+    .ring-band { fill: #e7e5dd; stroke: #1d3b2d; stroke-width: 1.5; transition: fill 0.25s ease; }
+    .ring.active .ring-face { fill: #D19900; }
+    .ring.active .ring-band { fill: #a37800; }
+
+    /* Flywheel rotating rim */
+    .fw-rim {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: fw-spin 26s linear infinite;
+    }
+    @keyframes fw-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .fw-rim { animation: none; }
+    }
+  </style>
+
+  <script>
+    const items = document.querySelectorAll<HTMLElement>('.layer-item');
+    const rings = document.querySelectorAll<SVGGElement>('.ring');
+
+    function setLayer(idx: number) {
+      items.forEach((el, i) => {
+        const open = i === idx;
+        el.classList.toggle('active', open);
+        el.querySelector('.layer-head')?.setAttribute('aria-expanded', String(open));
+      });
+      rings.forEach((el, i) => el.classList.toggle('active', i === idx));
+    }
+
+    items.forEach((el, i) => {
+      el.querySelector('.layer-head')?.addEventListener('click', () => setLayer(i));
+    });
+    setLayer(0);
+  </script>
+
 </BaseLayout>
